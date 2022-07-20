@@ -1,0 +1,11 @@
+node_modules/
+dist/
+public/
+temp/
+
+*.d.ts
+*.min.*
+pnpm-lock.yaml
+
+!.github
+!.vscode
