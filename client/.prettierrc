@@ -2,7 +2,7 @@
 	"arrowParens": "avoid",
 	"bracketSameLine": false,
 	"bracketSpacing": true,
-	"endOfLine": "lf",
+	"endOfLine": "crlf",
 	"htmlWhitespaceSensitivity": "css",
 	"jsxSingleQuote": false,
 	"printWidth": 90,
