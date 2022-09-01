@@ -9,11 +9,11 @@ defineProps<Props>();
 <template>
 	<button
 		type="button"
-		class="mr-2 mb-2 rounded-2xl px-5 py-2.5 text-center text-sm font-semibold focus:outline-none focus:ring-4"
+		class="rounded-full px-4 py-2 text-center text-sm font-semibold focus:outline-none focus:ring-1"
 		:class="{
-			'bg-orange-500 text-white hover:bg-orange-600 focus:ring-orange-300':
+			'bg-teal-600 text-white hover:bg-teal-600 focus:ring-teal-200':
 				theme == 'primary',
-			'bg-orange-200 text-orange-600 hover:bg-orange-300 focus:ring-orange-300':
+			'bg-teal-50 text-teal-600 hover:bg-teal-300 focus:ring-teal-200':
 				theme == 'secondary',
 		}"
 	>
