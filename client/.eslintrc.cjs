@@ -104,6 +104,7 @@ module.exports = {
 		"vue/no-v-text-v-html-on-component": "error",
 		"vue/padding-line-between-blocks": ["error", "always"],
 		"vue/prefer-separate-static-class": "error",
+		"vue/multi-word-component-names": "off",
 
 		"simple-import-sort/imports": "error",
 		"simple-import-sort/exports": "error",
