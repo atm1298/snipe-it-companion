@@ -1,0 +1,41 @@
+<script setup lang="ts">
+import { ref } from "vue";
+
+import type { SnipeitAsset } from "@/api/snipeit";
+import BaseCard from "@/components/BaseCard.vue";
+
+interface Props {
+	id: number;
+}
+
+const props = defineProps<Props>();
+
+// ALLE ASSETS TEST HEHE
+const options = {
+	headers: {
+		Accept: "application/json",
+		"Content-Type": "application/json",
+	},
+};
+
+const assets = ref<SnipeitAsset[]>();
+fetch("http://localhost:3000/assets?category_id=" + props.id, options)
+	.then(res => res.json())
+	.then((data: { assets: { rows: SnipeitAsset[] } }) => {
+		assets.value = data.assets.rows;
+	})
+
+	.then(() => console.log(assets.value));
+</script>
+
+<template>
+	<BaseCard
+		theme="default"
+		v-for="asset in assets"
+		:key="asset.id"
+		:id="asset.id"
+		:name="asset.name"
+		:image="asset.image"
+		:status="asset.status_label.name"
+	></BaseCard>
+</template>
