@@ -48,7 +48,7 @@ import BaseButton from "../components/BaseButton.vue";
 							id="remember-me"
 							name="remember-me"
 							type="checkbox"
-							class="h-4 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500"
+							class="h-4 w-4 rounded border-gray-300 text-teal-600 focus:ring-teal-500"
 						/>
 						<label for="remember-me" class="ml-2 block text-sm text-gray-900">
 							Angemeldet bleiben
@@ -56,10 +56,7 @@ import BaseButton from "../components/BaseButton.vue";
 					</div>
 
 					<div class="text-sm">
-						<a
-							href="#"
-							class="font-medium text-orange-600 hover:text-orange-500"
-						>
+						<a href="#" class="font-medium text-teal-600 hover:text-teal-500">
 							Passwort vergessen?
 						</a>
 					</div>
