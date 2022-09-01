@@ -16,8 +16,8 @@ function getStatusText() {
 </script>
 
 <template>
-	<div class="flex flex-col rounded-lg bg-gray-300 px-1 py-2 text-lg">
-		<h2><slot></slot></h2>
+	<div class="flex flex-col rounded-lg border border-gray-300 px-1 py-2 text-lg">
+		<h2 class="text-gray-900"><slot></slot></h2>
 		<p class="text-sm text-orange-600">{{ getStatusText() }}</p>
 	</div>
 </template>
