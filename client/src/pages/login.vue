@@ -7,8 +7,8 @@ import BaseButton from "../components/BaseButton.vue";
 		<div class="w-full max-w-md space-y-8">
 			<div>
 				<img
-					class="mx-auto h-12 w-auto"
-					src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+					class="mx-auto h-20 w-auto"
+					src="../components/icons/logo_uni_siegel.png"
 					alt="Workflow"
 				/>
 				<h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
@@ -48,7 +48,7 @@ import BaseButton from "../components/BaseButton.vue";
 							id="remember-me"
 							name="remember-me"
 							type="checkbox"
-							class="h-4 w-4 rounded border-gray-300 text-teal-600 focus:ring-teal-500"
+							class="h-4 w-4 rounded border-gray-300 text-gray-600 focus:ring-gray-500"
 						/>
 						<label for="remember-me" class="ml-2 block text-sm text-gray-900">
 							Angemeldet bleiben
@@ -56,7 +56,7 @@ import BaseButton from "../components/BaseButton.vue";
 					</div>
 
 					<div class="text-sm">
-						<a href="#" class="font-medium text-teal-600 hover:text-teal-500">
+						<a href="#" class="font-medium text-gray-600 hover:text-gray-500">
 							Passwort vergessen?
 						</a>
 					</div>

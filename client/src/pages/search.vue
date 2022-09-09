@@ -1,35 +1,38 @@
 <script setup lang="ts">
 import { SearchIcon } from "@heroicons/vue/outline";
 
-import ButtonInfo from "@/components/ButtonInfo.vue";
 import CategoryList from "@/components/CategoryList.vue";
 import DateRange from "@/components/DateRange.vue";
+
+import BaseButton from "../components/BaseButton.vue";
 </script>
 
 <template>
-	<div class="space-y-6">
-		<DateRange></DateRange>
-		<div>
+	<div class="grid w-full grid-cols-1 gap-4 p-2 md:grid-cols-2 md:p-4">
+		<div><DateRange></DateRange></div>
+		<div class="h-min rounded-2xl border border-gray-200 p-2 md:p-4">
 			<h2>Material</h2>
-			<p class="mb-2">Wähle dein Material aus</p>
-			<form method="get" action="/assets" class="relative mb-4">
+			<p class="mb-2">Nach was für Material suchst du?</p>
+			<form method="get" action="/assets" class="relative">
 				<input
 					type="search"
 					id="search"
 					name="search"
-					class="block w-full rounded-full border-gray-50 bg-gray-100 py-3 px-4 pl-11 text-sm focus:z-10 focus:border-teal-500 focus:ring-teal-500"
+					class="block w-full rounded-xl border-gray-200 bg-gray-200 py-3 px-4 pl-11 text-sm focus:z-10 focus:border-gray-200 focus:ring-gray-700"
 					placeholder="Suche"
 				/>
 				<div
 					class="pointer-events-none absolute inset-y-0 left-0 z-20 flex items-center pl-4"
 				>
-					<SearchIcon class="h-4 w-4 text-gray-400"></SearchIcon>
+					<SearchIcon class="h-4 w-4 text-gray-900"></SearchIcon>
 				</div>
 			</form>
-			<h3 class="mb-2">Vorschläge</h3>
-			<CategoryList class="mb-4" />
+
+			<CategoryList class="mb-2" />
 			<RouterLink to="/categories"
-				><ButtonInfo>Kategorien anzeigen</ButtonInfo>
+				><BaseButton theme="primary" class="w-full"
+					>Alle Kategorien anzeigen</BaseButton
+				>
 			</RouterLink>
 		</div>
 	</div>
