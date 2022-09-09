@@ -3,10 +3,9 @@ import { ref } from "vue";
 import { useRoute } from "vue-router";
 
 import type { SnipeitAsset } from "../../api/snipeit";
-import BaseBreadcrumbs from "../../components/BaseBreadcrumbs.vue";
+import BaseButton from "../../components/BaseButton.vue";
 import BaseCard from "../../components/BaseCard.vue";
 import BaseFilter from "../../components/BaseFilter.vue";
-import ButtonInfo from "../../components/ButtonInfo.vue";
 
 // ALLE ASSETS TEST HEHE
 const options = {
@@ -28,11 +27,10 @@ fetch("http://localhost:3000/assets?" + searchParams, options)
 </script>
 
 <template>
-	<div v-if="assets">
-		<BaseBreadcrumbs />
-
-		<div v-if="assets.length < 0" class="grid grid-cols-2 gap-4">
-			<BaseFilter></BaseFilter>
+	<div v-if="assets" class="h-full">
+		<!-- <BaseBreadcrumbs /> -->
+		<BaseFilter class=""></BaseFilter>
+		<div v-if="assets.length > 0" class="grid grid-cols-2 gap-4 md:p-4">
 			<BaseCard
 				theme="default"
 				v-for="asset in assets"
@@ -43,10 +41,10 @@ fetch("http://localhost:3000/assets?" + searchParams, options)
 				:status="asset.status_label.name"
 			></BaseCard>
 		</div>
-		<div v-else>
-			<h3 class="mb-2">Keine Ergebnisse gefunden</h3>
+		<div v-else class="grid h-full grid-cols-1 place-items-center">
+			<h1 class="mb-2">Keine Ergebnisse gefunden :(</h1>
 			<RouterLink to="/categories"
-				><ButtonInfo>Kategorien anzeigen</ButtonInfo>
+				><BaseButton theme="primary">Alle Kategorien anzeigen</BaseButton>
 			</RouterLink>
 		</div>
 	</div>

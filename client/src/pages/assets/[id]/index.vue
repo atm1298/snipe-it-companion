@@ -5,10 +5,8 @@ import { ref } from "vue";
 import type { SnipeitAsset } from "@/api/snipeit";
 import { useDateStore } from "@/stores/date";
 
-import BaseBreadcrumbs from "../../../components/BaseBreadcrumbs.vue";
 import BaseButton from "../../../components/BaseButton.vue";
 import BaseDateTimePicker from "../../../components/BaseDateTimePicker.vue";
-import BaseModul from "../../../components/BaseModul.vue";
 import ButtonInfo from "../../../components/ButtonInfo.vue";
 import ContactList from "../../../components/ContactList.vue";
 import DetailsList from "../../../components/DetailsList.vue";
@@ -57,59 +55,67 @@ const dateStore = useDateStore();
 
 <template>
 	<template v-if="asset != null">
-		<BaseBreadcrumbs />
-		<div
-			class="relative overflow-hidden rounded-t-xl pt-[50%] sm:pt-[60%] lg:pt-[80%]"
-		>
-			<img
-				class="absolute top-0 left-0 h-full w-full rounded-t-xl object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
-				:src="asset.image"
-				alt="Image Description"
-			/>
-		</div>
-		<h1>{{ asset.name }}</h1>
-		<p>{{ asset.serial }}</p>
-		<p>Ort: {{ asset.location.name }}</p>
-		<p>{{ asset.status_label.name }}</p>
-		<div class="pb-20">
-			<template v-if="details.length !== 0">
-				<DetailsList
-					class="mb-4"
-					:items="isDetailsOpen ? details : details.slice(0, 2)"
-				/>
-				<ButtonInfo
-					v-if="details.length > 2"
-					class="mb-4"
-					@click="isDetailsOpen = !isDetailsOpen"
-					>{{
-						isDetailsOpen ? "Weniger anzeigen" : "Details anzeigen"
-					}}</ButtonInfo
-				>
-			</template>
-			<ContactList :infos="infos"></ContactList>
-		</div>
-		<div class="fixed inset-x-0 bottom-0 border-t border-gray-300 bg-white p-2">
-			<BaseButton
-				v-if="dateStore.start == null"
-				theme="primary"
-				type="button"
-				class="hs-dropdown-toggle w-full items-center"
-				data-hs-offcanvas="#hs-offcanvas-bottom"
+		<!-- <BaseBreadcrumbs /> -->
+		<div class="grid p-2 sm:grid-cols-1 md:grid-cols-2 md:p-4">
+			<div
+				class="relative overflow-hidden rounded-t-xl pt-[50%] sm:pt-[60%] lg:pt-[80%]"
 			>
-				<span>Verfügbarkeit einsehen</span>
-			</BaseButton>
-			<div v-else class="flex items-center justify-between gap-4">
-				<div class="flex flex-col">
-					<p>{{ asset.status_label.name }}</p>
-					<span
-						class="hs-dropdown-toggle cursor-pointer text-sm text-teal-700"
-						data-hs-offcanvas="#hs-offcanvas-bottom"
-					>
-						{{ dateStore.formattedStartSmall }} -
-						{{ dateStore.formattedEndSmall }}</span
+				<img
+					class="absolute top-0 left-0 object-cover sm:h-full sm:w-full"
+					:src="asset.image"
+					alt="Image Description"
+				/>
+			</div>
+			<div>
+				<h1>{{ asset.name }}</h1>
+				<p>{{ asset.serial }}</p>
+				<p class="mb-2">Abholort: {{ asset.location.name }}</p>
+				<div class="pb-20">
+					<template v-if="details.length !== 0">
+						<DetailsList
+							class="mb-4"
+							:items="isDetailsOpen ? details : details.slice(0, 2)"
+						/>
+						<ButtonInfo
+							v-if="details.length > 2"
+							class="mb-4"
+							@click="isDetailsOpen = !isDetailsOpen"
+							>{{
+								isDetailsOpen ? "Weniger anzeigen" : "Details anzeigen"
+							}}</ButtonInfo
+						>
+					</template>
+					<ContactList :infos="infos"></ContactList>
+				</div>
+			</div>
+
+			<div class="fixed inset-x-0 bottom-0 border-t border-gray-300 bg-white p-2">
+				<BaseButton
+					v-if="dateStore.start == null"
+					theme="primary"
+					type="button"
+					class="hs-dropdown-toggle w-full items-center"
+					data-hs-offcanvas="#hs-offcanvas-bottom"
+				>
+					<span>Verfügbarkeit einsehen</span>
+				</BaseButton>
+				<div v-else class="flex items-center justify-between gap-4">
+					<div class="flex flex-col">
+						<p>{{ asset.status_label.name }}</p>
+						<span
+							class="hs-dropdown-toggle cursor-pointer text-sm text-gray-700"
+							data-hs-offcanvas="#hs-offcanvas-bottom"
+						>
+							{{ dateStore.formattedStartSmall }} -
+							{{ dateStore.formattedEndSmall }}</span
+						>
+					</div>
+					<RouterLink :to="`/assets/${id}/checkout`"
+						><BaseButton theme="primary">
+							Reservieren
+						</BaseButton></RouterLink
 					>
 				</div>
-				<BaseModul :asset="asset"></BaseModul>
 			</div>
 		</div>
 		<div
@@ -121,7 +127,7 @@ const dateStore = useDateStore();
 				<h3 class="font-bold text-gray-800">Zeitraum</h3>
 				<button
 					type="button"
-					class="hs-dropdown-toggle inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-sm text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white"
+					class="hs-dropdown-toggle inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-xl text-sm text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white"
 					data-hs-offcanvas="#hs-offcanvas-bottom"
 				>
 					<XIcon class="h-4 w-4" />
