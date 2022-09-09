@@ -48,7 +48,7 @@ import BaseButton from "./BaseButton.vue";
 							>Zurück</BaseButton
 						>
 						<a
-							class="inline-flex items-center justify-center gap-2 rounded-full bg-teal-600 px-4 py-2 text-center text-sm font-semibold text-white hover:bg-teal-600 focus:outline-none focus:ring-1 focus:ring-teal-200"
+							class="inline-flex items-center justify-center gap-2 rounded-xl bg-gray-600 px-4 py-2 text-center text-sm font-semibold text-white hover:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-gray-200"
 							href="/"
 						>
 							Fertig

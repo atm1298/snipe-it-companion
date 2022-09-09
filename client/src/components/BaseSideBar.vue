@@ -1,15 +1,21 @@
 <script setup lang="ts">
-import { ChevronRightIcon, CogIcon, MenuIcon } from "@heroicons/vue/outline";
+import {
+	ClipboardCheckIcon,
+	LibraryIcon,
+	LogoutIcon,
+	MenuIcon,
+	SearchIcon,
+	UserIcon,
+	ViewGridIcon,
+} from "@heroicons/vue/outline";
 import { ref } from "vue";
-
-import BaseButton from "./BaseButton.vue";
 
 const nav = ref();
 const closeSidebar = () => window.HSSideabr.close(nav.value);
 </script>
 
 <template>
-	<div class="flex justify-end p-2">
+	<div class="flex justify-start p-2 lg:hidden">
 		<button
 			type="button"
 			class="text-gray-500 hover:text-gray-600"
@@ -24,77 +30,104 @@ const closeSidebar = () => window.HSSideabr.close(nav.value);
 	<div
 		ref="nav"
 		id="docs-sidebar"
-		class="hs-sidebar scrollbar-y fixed inset-y-0 right-0 z-[60] hidden w-64 translate-x-full transform overflow-y-auto border-r border-gray-200 bg-white pt-7 pb-10 transition-all duration-300 hs-sidebar-open:translate-x-0 lg:right-auto lg:bottom-0 lg:block lg:translate-x-0"
+		class="hs-sidebar scrollbar-y fixed inset-y-0 left-0 z-[60] hidden w-60 -translate-x-full transform overflow-y-auto border-r border-gray-200 bg-white p-2 pt-4 pb-10 transition-all duration-300 hs-sidebar-open:translate-x-0 lg:static lg:right-auto lg:bottom-0 lg:block lg:translate-x-0"
 	>
-		<div class="mb-4 px-8">
-			<div class="flex w-full flex-row justify-between">
-				<h2 class="mb-2 flex-none">Persönliches</h2>
-				<CogIcon class="h-6 w-6 text-teal-700"></CogIcon>
-			</div>
-
-			<div class="group block flex-shrink-0">
-				<div class="flex items-center border-b pb-3">
-					<div class="">
-						<h3 class="font-semibold text-gray-800">Maria Wanner</h3>
-						<p class="text-sm font-medium text-gray-400">maria@gmail.com</p>
-					</div>
-				</div>
-			</div>
+		<div class="mb-2 border-b p-2">
+			<h3 class="font-semibold text-gray-800 md:text-base">Name Nachname</h3>
+			<p class="text-sm font-medium text-gray-400 md:text-base">Rolle</p>
 		</div>
 
-		<div class="px-8">
-			<h2 class="mb-2 flex-none">Menü</h2>
+		<div class="">
+			<nav class="flex w-full flex-col flex-wrap">
+				<ul class="space-y-5">
+					<!-- <form method="get" action="/assets" class="relative">
+						<input
+							type="search"
+							id="search"
+							name="search"
+							class="block w-full rounded-xl border-gray-200 bg-gray-200 pl-10 text-sm focus:z-10 focus:border-gray-800 focus:ring-gray-200"
+							placeholder="Suche"
+						/>
+						<div
+							class="pointer-events-none absolute inset-y-0 left-0 z-20 flex items-center pl-4"
+						>
+							<SearchIcon class="h-4 w-4 text-gray-900"></SearchIcon>
+						</div>
+					</form> -->
+					<li>
+						<RouterLink
+							class="flex items-center gap-x-3 rounded-lg p-2 text-sm text-slate-900 hover:bg-gray-200 md:text-base"
+							to="/administration"
+							active-class="font-semibold "
+							@click="closeSidebar"
+						>
+							<ClipboardCheckIcon
+								class="h-4 w-4 text-gray-900 md:h-5 md:w-5"
+							/><span>Verwaltung</span>
+						</RouterLink>
+					</li>
+
+					<li>
+						<RouterLink
+							class="flex w-full items-center gap-x-3 rounded-lg p-2 text-sm text-slate-900 hover:bg-gray-200 md:text-base"
+							to="/"
+							active-class="font-semibold"
+							@click="closeSidebar"
+						>
+							<ViewGridIcon
+								class="h-4 w-4 text-gray-900 md:h-5 md:w-5"
+							/><span>Dashboard</span>
+						</RouterLink>
+					</li>
+
+					<li class="">
+						<RouterLink
+							class="flex w-full items-center gap-x-3 rounded-lg p-2 text-sm text-slate-900 hover:bg-gray-200 md:text-base"
+							to="/search"
+							active-class="font-semibold"
+							@click="closeSidebar"
+						>
+							<SearchIcon
+								class="h-4 w-4 text-gray-900 md:h-5 md:w-5"
+							/><span>Suche</span>
+						</RouterLink>
+					</li>
+					<li>
+						<RouterLink
+							class="flex w-full items-center gap-x-3 rounded-lg p-2 text-sm text-slate-900 hover:bg-gray-200 md:text-base"
+							to="/categories"
+							active-class="font-semibold"
+							@click="closeSidebar"
+						>
+							<LibraryIcon
+								class="h-4 w-4 text-gray-900 md:h-5 md:w-5"
+							/><span>Kategorie</span>
+						</RouterLink>
+					</li>
+				</ul>
+			</nav>
 		</div>
-		<nav class="flex w-full flex-col flex-wrap px-8">
-			<ul class="space-y-5">
-				<li>
-					<RouterLink
-						class="flex w-full items-center justify-between gap-x-3 text-sm text-slate-700 hover:bg-gray-100"
-						to="/"
-						active-class="font-semibold"
-						@click="closeSidebar"
-					>
-						<span>Startseite</span>
-						<ChevronRightIcon class="h-3 w-3 text-teal-700" />
-					</RouterLink>
-				</li>
-				<li>
-					<RouterLink
-						class="flex items-center justify-between gap-x-3 text-sm text-slate-700 hover:bg-gray-100"
-						to="/login"
-						active-class="font-semibold "
-						@click="closeSidebar"
-					>
-						<span>Einloggen</span>
-						<ChevronRightIcon class="h-3 w-3 text-teal-700" />
-					</RouterLink>
-				</li>
-				<li>
-					<RouterLink
-						class="flex w-full items-center justify-between gap-x-3 text-sm text-slate-700 hover:bg-gray-100"
-						to="/search"
-						active-class="font-semibold"
-						@click="closeSidebar"
-					>
-						<span>Suche</span>
-						<ChevronRightIcon class="h-3 w-3 text-teal-700" />
-					</RouterLink>
-				</li>
-				<li>
-					<RouterLink
-						class="flex w-full items-center justify-between gap-x-3 text-sm text-slate-700 hover:bg-gray-100"
-						to="/category"
-						active-class="font-semibold"
-						@click="closeSidebar"
-					>
-						<span>Kategorie</span>
-						<ChevronRightIcon class="h-3 w-3 text-teal-700" />
-					</RouterLink>
-				</li>
-			</ul>
-		</nav>
-		<div class="fixed inset-x-0 bottom-0 border-gray-300 p-2">
-			<BaseButton theme="secondary" class="w-full">Ausloggen</BaseButton>
+
+		<div class="fixed inset-x-0 bottom-4 space-y-2 p-2 text-sm">
+			<RouterLink
+				class="flex w-full items-center gap-x-3 rounded-lg border-gray-900 p-2 text-slate-900 hover:bg-gray-200 md:text-base"
+				to="/profil"
+				active-class="font-semibold"
+				@click="closeSidebar"
+			>
+				<UserIcon class="h-4 w-4 text-gray-900 md:h-5 md:w-5" /><span
+					>Profil</span
+				>
+			</RouterLink>
+			<RouterLink
+				class="flex w-full items-center gap-x-3 rounded-lg border-gray-900 p-2 text-slate-900 hover:bg-gray-200 md:text-base"
+				to="/categories"
+				active-class="font-semibold"
+				@click="closeSidebar"
+			>
+				<LogoutIcon class="h-4 w-4 text-gray-900 md:h-5 md:w-5" />
+				<span>Ausloggen</span>
+			</RouterLink>
 		</div>
 	</div>
 </template>

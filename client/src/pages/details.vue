@@ -57,7 +57,7 @@ const dateStore = useDateStore();
 			<div class="flex flex-col">
 				<p>Verfügbar</p>
 				<span
-					class="hs-dropdown-toggle cursor-pointer text-sm text-teal-700"
+					class="hs-dropdown-toggle cursor-pointer text-sm text-gray-700"
 					data-hs-offcanvas="#hs-offcanvas-bottom"
 				>
 					{{ dateStore.formattedStartSmall }} -
@@ -76,7 +76,7 @@ const dateStore = useDateStore();
 			<h3 class="font-bold text-gray-800">Zeitraum</h3>
 			<button
 				type="button"
-				class="hs-dropdown-toggle inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-sm text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white"
+				class="hs-dropdown-toggle inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-xl text-sm text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white"
 				data-hs-offcanvas="#hs-offcanvas-bottom"
 			>
 				<XIcon class="h-4 w-4" />

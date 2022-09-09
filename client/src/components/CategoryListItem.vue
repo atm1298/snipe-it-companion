@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ChevronRightIcon, SparklesIcon } from "@heroicons/vue/outline";
+import { ChevronRightIcon } from "@heroicons/vue/outline";
 
 interface Props {
-	id: string;
+	id?: string;
 	category: string;
 }
 defineProps<Props>();
@@ -10,13 +10,22 @@ defineProps<Props>();
 
 <template>
 	<RouterLink
-		:to="`/assets/categories/${id}`"
-		class="flex flex-row items-center justify-between px-4"
+		v-if="!!id"
+		:to="`/categories/${id}`"
+		class="flex flex-row items-center justify-between rounded-xl border border-gray-200 p-2 text-lg hover:bg-gray-200"
 	>
 		<div class="flex flex-row items-center gap-4">
-			<SparklesIcon class="h-4 w-4 text-gray-400"></SparklesIcon>
 			<h4>{{ category }}</h4>
 		</div>
-		<ChevronRightIcon class="h-4 w-4 text-teal-600"></ChevronRightIcon>
+		<ChevronRightIcon class="h-4 w-4 text-gray-600"></ChevronRightIcon>
 	</RouterLink>
+	<button
+		v-else
+		class="flex w-full flex-row items-center justify-between rounded-xl border border-gray-200 p-2 text-lg hover:bg-gray-200"
+	>
+		<div class="flex flex-row items-center gap-4">
+			<h4>{{ category }}</h4>
+		</div>
+		<ChevronRightIcon class="h-4 w-4 text-gray-600"></ChevronRightIcon>
+	</button>
 </template>

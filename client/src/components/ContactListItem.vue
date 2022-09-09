@@ -16,7 +16,7 @@ defineProps<{
 		<p>{{ email }}</p>
 	</div>
 	<div class="flex flex-row justify-start space-x-4">
-		<h3 class="w-16">Lageort</h3>
+		<h3 class="w-16">Abholort</h3>
 		<p>{{ room }}</p>
 	</div>
 </template>
