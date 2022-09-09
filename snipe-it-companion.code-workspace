@@ -7,5 +7,15 @@
 			"path": "server"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"sqltools.connections": [
+			{
+				"previewLimit": 50,
+				"driver": "SQLite",
+				"name": "SnipeItDB",
+				"database": "${workspaceFolder:server}/prisma/dev.db"
+			}
+		],
+		"sqltools.useNodeRuntime": true
+	}
 }

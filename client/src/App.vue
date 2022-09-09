@@ -5,11 +5,19 @@ import BaseSideBar from "./components/BaseSideBar.vue";
 </script>
 
 <template>
-	<BaseSideBar></BaseSideBar>
+	<div class="min-h-screen grid-cols-[auto_1fr] lg:grid">
+		<BaseSideBar></BaseSideBar>
 
-	<main class="px-2 lg:pl-[18rem]">
-		<RouterView />
-	</main>
+		<main class="mx-auto flex w-full">
+			<RouterView />
+		</main>
+	</div>
 </template>
 
-<style></style>
+<style>
+#app {
+	min-height: 100vh;
+	display: grid;
+	grid-template-rows: auto 1fr;
+}
+</style>
