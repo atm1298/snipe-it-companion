@@ -26,23 +26,16 @@ defineProps<Props>();
 				/>
 			</div>
 			<div class="p-4 md:p-5">
-				<h2 class="">{{ name }}</h2>
+				<h3 class="">{{ name }}</h3>
 				<p class="mt-1 text-gray-800">{{ status }}</p>
 			</div>
 		</RouterLink>
 
-		<div
-			v-else-if="theme == 'checkout'"
-			class="flex flex-row rounded-xl border shadow-sm"
-		>
+		<div v-else-if="theme == 'checkout'" class="flex flex-row">
 			<div
-				class="flex w-1/2 rounded-t-xl sm:max-w-[15rem] sm:rounded-l-xl md:max-w-xs md:rounded-tr-none"
+				class="flex w-1/3 rounded-xl sm:max-w-[15rem] sm:rounded-l-xl md:max-w-xs md:rounded-tr-none"
 			>
-				<img
-					class="h-full w-full object-cover"
-					:src="image"
-					alt="Image Description"
-				/>
+				<img class="w-full object-contain" :src="image" alt="Image Description" />
 			</div>
 			<div class="flex flex-wrap">
 				<div class="flex h-full flex-col p-2 sm:p-7">

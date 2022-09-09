@@ -29,7 +29,7 @@ function openModal() {
 </script>
 
 <template>
-	<BaseButton theme="primary" @click="openModal"> Hinzufügen </BaseButton>
+	<BaseButton theme="primary" @click="openModal"> Reservieren </BaseButton>
 
 	<TransitionRoot appear :show="isOpen" as="template">
 		<Dialog as="div" @close="closeModal" class="relative z-10">
@@ -63,8 +63,7 @@ function openModal() {
 								as="h3"
 								class="flex justify-between text-lg font-medium leading-6 text-gray-900"
 							>
-								Material hinzugefügt
-								<p class="text-xs text-teal-600">Rückgängig</p>
+								Reservierung bestätigt
 							</DialogTitle>
 
 							<div class="mt-2">
@@ -78,15 +77,15 @@ function openModal() {
 								></BaseCard>
 							</div>
 
-							<div class="mt-4">
-								<RouterLink to="/reservation/checkout"
-									><BaseButton theme="primary">
-										Suche abschließen
+							<div class="mt-4 flex justify-center gap-4">
+								<RouterLink :to="`/assets/${id}/checkout`"
+									><BaseButton theme="secondary">
+										Rückgängig
 									</BaseButton></RouterLink
 								>
-								<RouterLink to="/search"
-									><BaseButton theme="secondary">
-										Weiter suchen
+								<RouterLink to="/"
+									><BaseButton theme="primary">
+										Abschließen
 									</BaseButton></RouterLink
 								>
 							</div>

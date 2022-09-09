@@ -15,7 +15,7 @@
 				<div class="ml-auto flex items-center space-x-3">
 					<button
 						type="button"
-						class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent text-sm font-medium text-teal-600 transition-all hover:underline focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+						class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent text-sm font-medium text-gray-600 transition-all hover:underline focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
 					>
 						Rückgängig
 					</button>

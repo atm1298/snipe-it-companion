@@ -4,10 +4,10 @@
 	<div class="mb-4">
 		<ol class="flex min-w-0 items-center whitespace-nowrap" aria-label="Breadcrumb">
 			<li class="text-base">
-				<a class="flex items-center text-gray-500 hover:text-teal-600" href="#">
+				<a class="flex items-center text-gray-500 hover:text-gray-600" href="#">
 					Kategorien
 					<svg
-						class="mx-3 h-2.5 w-2.5 flex-shrink-0 overflow-visible text-teal-400"
+						class="mx-3 h-2.5 w-2.5 flex-shrink-0 overflow-visible text-gray-400"
 						width="16"
 						height="16"
 						viewBox="0 0 16 16"
@@ -24,10 +24,10 @@
 				</a>
 			</li>
 			<li class="text-base">
-				<a class="flex items-center text-gray-500 hover:text-teal-600" href="#">
+				<a class="flex items-center text-gray-500 hover:text-gray-600" href="#">
 					Unterkategorie
 					<svg
-						class="mx-3 h-2.5 w-2.5 flex-shrink-0 overflow-visible text-teal-400"
+						class="mx-3 h-2.5 w-2.5 flex-shrink-0 overflow-visible text-gray-400"
 						width="16"
 						height="16"
 						viewBox="0 0 16 16"

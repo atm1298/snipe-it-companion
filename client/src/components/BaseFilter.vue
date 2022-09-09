@@ -10,7 +10,7 @@ import BaseRadioButton from "./BaseRadioButton.vue";
 	<div class="mb-2 flex w-full justify-end">
 		<button
 			type="button"
-			class="hs-dropdown-toggle inline-flex items-center gap-2 rounded-xl bg-teal-50 p-2 text-xs transition-all hover:bg-teal-600 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:ring-offset-1"
+			class="hs-dropdown-toggle inline-flex items-center gap-2 rounded-xl bg-gray-50 p-2 text-xs transition-all hover:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:ring-offset-1"
 			data-hs-offcanvas="#hs-offcanvas-right"
 		>
 			<FilterIcon class="h-4 w-4 text-gray-700"></FilterIcon>
@@ -49,11 +49,11 @@ import BaseRadioButton from "./BaseRadioButton.vue";
 			</div>
 			<div class="hs-accordion active" id="hs-basic-heading-one">
 				<button
-					class="hs-accordion-toggle group inline-flex w-full items-center gap-x-3 py-3 text-left font-semibold text-gray-800 transition hover:text-gray-500 hs-accordion-active:text-teal-600"
+					class="hs-accordion-toggle group inline-flex w-full items-center gap-x-3 py-3 text-left font-semibold text-gray-800 transition hover:text-gray-500 hs-accordion-active:text-gray-600"
 					aria-controls="hs-basic-collapse-one"
 				>
 					<svg
-						class="block h-3 w-3 text-gray-600 group-hover:text-gray-500 hs-accordion-active:hidden hs-accordion-active:text-teal-600 hs-accordion-active:group-hover:text-teal-600"
+						class="block h-3 w-3 text-gray-600 group-hover:text-gray-500 hs-accordion-active:hidden hs-accordion-active:text-gray-600 hs-accordion-active:group-hover:text-gray-600"
 						width="16"
 						height="16"
 						viewBox="0 0 16 16"
@@ -74,7 +74,7 @@ import BaseRadioButton from "./BaseRadioButton.vue";
 						/>
 					</svg>
 					<svg
-						class="hidden h-3 w-3 text-gray-600 group-hover:text-gray-500 hs-accordion-active:block hs-accordion-active:text-teal-600 hs-accordion-active:group-hover:text-teal-600"
+						class="hidden h-3 w-3 text-gray-600 group-hover:text-gray-500 hs-accordion-active:block hs-accordion-active:text-gray-600 hs-accordion-active:group-hover:text-gray-600"
 						width="16"
 						height="16"
 						viewBox="0 0 16 16"
@@ -103,11 +103,11 @@ import BaseRadioButton from "./BaseRadioButton.vue";
 
 			<div class="hs-accordion" id="hs-basic-heading-two">
 				<button
-					class="hs-accordion-toggle group inline-flex w-full items-center gap-x-3 py-3 text-left font-semibold text-gray-800 transition hover:text-gray-500 hs-accordion-active:text-teal-600"
+					class="hs-accordion-toggle group inline-flex w-full items-center gap-x-3 py-3 text-left font-semibold text-gray-800 transition hover:text-gray-500 hs-accordion-active:text-gray-600"
 					aria-controls="hs-basic-collapse-two"
 				>
 					<svg
-						class="block h-3 w-3 text-gray-600 group-hover:text-gray-500 hs-accordion-active:hidden hs-accordion-active:text-teal-600 hs-accordion-active:group-hover:text-teal-600"
+						class="block h-3 w-3 text-gray-600 group-hover:text-gray-500 hs-accordion-active:hidden hs-accordion-active:text-gray-600 hs-accordion-active:group-hover:text-gray-600"
 						width="16"
 						height="16"
 						viewBox="0 0 16 16"
@@ -128,7 +128,7 @@ import BaseRadioButton from "./BaseRadioButton.vue";
 						/>
 					</svg>
 					<svg
-						class="hidden h-3 w-3 text-gray-600 group-hover:text-gray-500 hs-accordion-active:block hs-accordion-active:text-teal-600 hs-accordion-active:group-hover:text-teal-600"
+						class="hidden h-3 w-3 text-gray-600 group-hover:text-gray-500 hs-accordion-active:block hs-accordion-active:text-gray-600 hs-accordion-active:group-hover:text-gray-600"
 						width="16"
 						height="16"
 						viewBox="0 0 16 16"
@@ -157,11 +157,11 @@ import BaseRadioButton from "./BaseRadioButton.vue";
 
 			<div class="hs-accordion" id="hs-basic-heading-three">
 				<button
-					class="hs-accordion-toggle group inline-flex w-full items-center gap-x-3 py-3 text-left font-semibold text-gray-800 transition hover:text-gray-500 hs-accordion-active:text-teal-600"
+					class="hs-accordion-toggle group inline-flex w-full items-center gap-x-3 py-3 text-left font-semibold text-gray-800 transition hover:text-gray-500 hs-accordion-active:text-gray-600"
 					aria-controls="hs-basic-collapse-three"
 				>
 					<svg
-						class="block h-3 w-3 text-gray-600 group-hover:text-gray-500 hs-accordion-active:hidden hs-accordion-active:text-teal-600 hs-accordion-active:group-hover:text-teal-600"
+						class="block h-3 w-3 text-gray-600 group-hover:text-gray-500 hs-accordion-active:hidden hs-accordion-active:text-gray-600 hs-accordion-active:group-hover:text-gray-600"
 						width="16"
 						height="16"
 						viewBox="0 0 16 16"
@@ -182,7 +182,7 @@ import BaseRadioButton from "./BaseRadioButton.vue";
 						/>
 					</svg>
 					<svg
-						class="hidden h-3 w-3 text-gray-600 group-hover:text-gray-500 hs-accordion-active:block hs-accordion-active:text-teal-600 hs-accordion-active:group-hover:text-teal-600"
+						class="hidden h-3 w-3 text-gray-600 group-hover:text-gray-500 hs-accordion-active:block hs-accordion-active:text-gray-600 hs-accordion-active:group-hover:text-gray-600"
 						width="16"
 						height="16"
 						viewBox="0 0 16 16"
