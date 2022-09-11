@@ -10,12 +10,12 @@ const dateStore = useDateStore();
 </script>
 
 <template>
-	<div class="h-min rounded-2xl border border-gray-200 p-2 md:p-4">
+	<div class="h-min rounded-2xl border border-gray-200 p-2">
 		<h2>Zeitraum</h2>
 		<p class="mb-2">Zu wann wird das Material benötigt?</p>
 		<div class="hidden space-y-2 md:block">
 			<div
-				class="inline-flex w-full items-center justify-between gap-2 rounded-xl border border-transparent bg-gray-200 py-3 px-4 text-sm font-semibold transition-all hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-1"
+				class="inline-flex w-full items-center justify-between gap-2 rounded-xl border border-transparent bg-gray-200 py-3 px-4 text-sm font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-1"
 			>
 				<span>Zeitraum</span>
 				<span class="text-gray-700">
@@ -31,7 +31,7 @@ const dateStore = useDateStore();
 		</div>
 		<button
 			type="button"
-			class="hs-dropdown-toggle block w-full items-center justify-between gap-2 rounded-xl border border-transparent bg-gray-200 py-3 px-4 text-sm font-semibold transition-all hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-1 md:hidden"
+			class="hs-dropdown-toggle block flex w-full items-center justify-between gap-2 rounded-xl border border-transparent bg-gray-200 py-3 px-4 text-sm font-semibold transition-all hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-1 md:hidden"
 			data-hs-offcanvas="#hs-offcanvas-bottom"
 		>
 			<span>Zeitraum</span>

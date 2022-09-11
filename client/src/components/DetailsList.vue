@@ -10,8 +10,8 @@ defineProps<{
 </script>
 
 <template>
-	<div>
-		<h2>Details</h2>
+	<div class="border-b pb-2">
+		<h2 class="">Details</h2>
 		<div class="space-y-2">
 			<DetailsListItem
 				v-for="item in items"
