@@ -30,6 +30,7 @@ fetch("http://localhost:3000/reservation?userId=1", options)
 			<h1 class="p-2">Ausleihübersicht</h1>
 			<BaseDiscloure default-open title="Laufende Ausleihe">
 				<AssetStatus
+					role="user"
 					v-for="reservation in reservations"
 					:key="reservation.id"
 					status="now"
@@ -42,6 +43,7 @@ fetch("http://localhost:3000/reservation?userId=1", options)
 			</BaseDiscloure>
 			<BaseDiscloure default-open title="Kommende Ausleihe">
 				<AssetStatus
+					role="user"
 					v-for="reservation in reservations"
 					:key="reservation.id"
 					status="soon"
@@ -54,6 +56,7 @@ fetch("http://localhost:3000/reservation?userId=1", options)
 			></BaseDiscloure>
 			<BaseDiscloure default-open title="Vergangene Ausleihe">
 				<AssetStatus
+					role="user"
 					v-for="reservation in reservations"
 					:key="reservation.id"
 					status="past"
@@ -70,7 +73,7 @@ fetch("http://localhost:3000/reservation?userId=1", options)
 		>
 			<h1>Neues Material ausleihen</h1>
 			<DateRange class="border-white"></DateRange>
-			<div>
+			<div class="p-2">
 				<h2>Material</h2>
 				<p class="mb-2">Nach was für Material suchst du?</p>
 				<form method="get" action="/assets" class="relative mb-4">
@@ -78,13 +81,13 @@ fetch("http://localhost:3000/reservation?userId=1", options)
 						type="search"
 						id="search"
 						name="search"
-						class="focus:border-gray-20000 block w-full rounded-xl border-gray-200 bg-gray-200 py-3 px-4 pl-11 text-sm focus:z-10 focus:ring-gray-700"
+						class="block w-full rounded-xl border-gray-200 bg-gray-200 py-3 px-4 pl-11 text-sm hover:bg-gray-300 focus:z-10 focus:border-gray-200 focus:ring-gray-200"
 						placeholder="Suche"
 					/>
 					<div
 						class="pointer-events-none absolute inset-y-0 left-0 z-20 flex items-center pl-4"
 					>
-						<SearchIcon class="h-4 w-4 text-gray-400"></SearchIcon>
+						<SearchIcon class="h-4 w-4 text-gray-500"></SearchIcon>
 					</div>
 				</form>
 

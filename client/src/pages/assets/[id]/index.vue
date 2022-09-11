@@ -56,12 +56,10 @@ const dateStore = useDateStore();
 <template>
 	<template v-if="asset != null">
 		<!-- <BaseBreadcrumbs /> -->
-		<div class="grid p-2 sm:grid-cols-1 md:grid-cols-2 md:p-4">
-			<div
-				class="relative overflow-hidden rounded-t-xl pt-[50%] sm:pt-[60%] lg:pt-[80%]"
-			>
+		<div class="grid grid-cols-1 gap-5 p-2 md:grid-cols-2 md:p-4">
+			<div class="relative overflow-hidden rounded-xl">
 				<img
-					class="absolute top-0 left-0 object-cover sm:h-full sm:w-full"
+					class="border-gray h-40 w-full rounded-xl border object-contain"
 					:src="asset.image"
 					alt="Image Description"
 				/>
