@@ -97,8 +97,11 @@ const dateStore = useDateStore();
 				>
 					<span>Verfügbarkeit einsehen</span>
 				</BaseButton>
-				<div v-else class="flex items-center justify-between gap-4">
-					<div class="flex flex-col">
+				<div
+					v-else
+					class="flex items-center justify-between gap-4 lg:justify-end"
+				>
+					<div class="block flex flex-col lg:hidden">
 						<p>{{ asset.status_label.name }}</p>
 						<span
 							class="hs-dropdown-toggle cursor-pointer text-sm text-gray-700"

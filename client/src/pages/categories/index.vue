@@ -44,7 +44,7 @@ fetch("http://localhost:3000/categories", options)
 </script>
 
 <template>
-	<div class="mb-2 grid h-min w-full grid-cols-1 gap-4 p-2 md:grid-cols-4 md:p-4">
+	<div class="mb-2 grid h-min w-full grid-cols-1 gap-4 p-2 md:p-4">
 		<!-- <BaseBreadcrumbs /> -->
 		<template v-if="!subcategories">
 			<CategoryListItem
