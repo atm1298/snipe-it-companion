@@ -1,29 +1,26 @@
 <script setup lang="ts">
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
-import { ChevronUpIcon } from "@heroicons/vue/solid";
+import { ChevronLeftIcon, ChevronUpIcon, ViewGridAddIcon } from "@heroicons/vue/outline";
 import { ref } from "vue";
 
 import CategoryListItem from "./CategoryListItem.vue";
 
-interface Props {
-	title: string;
-	defaultOpen?: boolean;
-	theme: "nav" | "default";
-}
-defineProps<Props>();
 const options = {
 	headers: {
 		Accept: "application/json",
 		"Content-Type": "application/json",
 	},
 };
+
 const categories = ref();
 const subcategories = ref();
 fetch("http://localhost:3000/categories", options)
 	.then(res => res.json())
 	.then(data => (categories.value = data.categories.rows))
 	.then(() => {
+		console.log(categories.value);
 		categories.value = categories.value
+			.filter(category => category.assets_count > 0)
 			.map(category => {
 				const catSplit = category.name.split(" - ");
 				return {
@@ -45,27 +42,32 @@ fetch("http://localhost:3000/categories", options)
 				};
 			}, {});
 		categories.value = Object.entries(categories.value);
-		console.log(categories.value);
 	});
 </script>
 
 <template>
-	<div class="w-ful border-b">
-		<Disclosure :default-open="defaultOpen" v-slot="{ open }">
+	<div class="w-full">
+		<Disclosure v-slot="{ open }">
 			<DisclosureButton
-				class="flex w-full items-center justify-between rounded-lg p-2 py-4 text-left text-lg text-gray-900 hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-gray-200 focus-visible:ring-opacity-75"
+				class="flex w-full items-center gap-x-3 rounded-lg p-2 text-base text-slate-900 hover:rounded-lg hover:bg-gray-200"
 			>
-				<h2>{{ title }}</h2>
+				<div class="flex w-full items-center gap-x-3">
+					<ViewGridAddIcon
+						class="h-4 w-4 text-gray-900 md:h-5 md:w-5"
+					></ViewGridAddIcon>
+					<slot>Kategorien</slot>
+				</div>
 				<ChevronUpIcon
 					:class="open ? 'rotate-180 transform' : ''"
 					class="h-5 w-5 text-gray-600"
 				/>
 			</DisclosureButton>
 
-			<DisclosurePanel v-if="theme == 'nav'" class="pb-4 text-sm text-gray-900"
+			<DisclosurePanel class="pb-4 text-sm text-gray-900"
 				><div class="mb-2 grid h-min w-full grid-cols-1 gap-4 rounded-lg md:p-4">
 					<template v-if="!subcategories">
 						<CategoryListItem
+							class="hover:rounded-lg hover:bg-gray-200"
 							v-for="category in categories"
 							@click="subcategories = category[1]"
 							:category="category[0]"
@@ -75,6 +77,17 @@ fetch("http://localhost:3000/categories", options)
 					</template>
 
 					<template v-else>
+						<button
+							@click="subcategories = null"
+							class="flex w-full flex-row items-center gap-2 border-b border-gray-200 p-2 text-lg hover:bg-gray-200"
+						>
+							<ChevronLeftIcon
+								class="h-4 w-4 text-gray-600"
+							></ChevronLeftIcon>
+							<div class="flex flex-row items-center gap-4">
+								<h4 class="font-semibold">Zurück</h4>
+							</div>
+						</button>
 						<CategoryListItem
 							v-for="subcategory in subcategories"
 							:id="subcategory.id"
@@ -82,9 +95,6 @@ fetch("http://localhost:3000/categories", options)
 							:category="subcategory.subcategory"
 						/>
 					</template></div
-			></DisclosurePanel>
-			<DisclosurePanel v-else class="p-2 pb-4 text-sm text-gray-500"
-				><slot></slot
 			></DisclosurePanel>
 		</Disclosure>
 	</div>
