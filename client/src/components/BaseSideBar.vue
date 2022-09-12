@@ -11,13 +11,6 @@ import { ref } from "vue";
 
 import CategoryDiscloure from "./CategoryDiscloure.vue";
 
-const options = {
-	headers: {
-		Accept: "application/json",
-		"Content-Type": "application/json",
-	},
-};
-
 const nav = ref();
 const closeSidebar = () => window.HSSideabr.close(nav.value);
 </script>
