@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {
 	ClipboardCheckIcon,
-	LibraryIcon,
 	LogoutIcon,
 	MenuIcon,
 	SearchIcon,
@@ -9,6 +8,15 @@ import {
 	ViewGridIcon,
 } from "@heroicons/vue/outline";
 import { ref } from "vue";
+
+import CategoryDiscloure from "./CategoryDiscloure.vue";
+
+const options = {
+	headers: {
+		Accept: "application/json",
+		"Content-Type": "application/json",
+	},
+};
 
 const nav = ref();
 const closeSidebar = () => window.HSSideabr.close(nav.value);
@@ -30,7 +38,7 @@ const closeSidebar = () => window.HSSideabr.close(nav.value);
 	<div
 		ref="nav"
 		id="docs-sidebar"
-		class="hs-sidebar scrollbar-y fixed inset-y-0 left-0 z-[60] hidden w-60 -translate-x-full transform overflow-y-auto border-r border-gray-200 bg-white p-2 pt-4 pb-10 transition-all duration-300 hs-sidebar-open:translate-x-0 lg:static lg:right-auto lg:bottom-0 lg:block lg:translate-x-0"
+		class="hs-sidebar scrollbar-y fixed inset-y-0 left-0 z-[60] hidden w-72 -translate-x-full transform overflow-y-auto border-r border-gray-200 bg-white p-2 pt-4 pb-10 transition-all duration-300 hs-sidebar-open:translate-x-0 lg:static lg:right-auto lg:bottom-0 lg:block lg:translate-x-0"
 	>
 		<div class="mb-2 border-b p-2">
 			<h3 class="font-semibold text-gray-800 md:text-base">Name Nachname</h3>
@@ -39,37 +47,23 @@ const closeSidebar = () => window.HSSideabr.close(nav.value);
 
 		<div class="">
 			<nav class="flex w-full flex-col flex-wrap">
-				<ul class="space-y-5">
-					<!-- <form method="get" action="/assets" class="relative">
-						<input
-							type="search"
-							id="search"
-							name="search"
-							class="block w-full rounded-xl border-gray-200 bg-gray-200 pl-10 text-sm focus:z-10 focus:border-gray-800 focus:ring-gray-200"
-							placeholder="Suche"
-						/>
-						<div
-							class="pointer-events-none absolute inset-y-0 left-0 z-20 flex items-center pl-4"
-						>
-							<SearchIcon class="h-4 w-4 text-gray-900"></SearchIcon>
-						</div>
-					</form> -->
+				<ul class="space-y-4">
 					<li>
 						<RouterLink
-							class="flex items-center gap-x-3 rounded-lg p-2 text-sm text-slate-900 hover:bg-gray-200 md:text-base"
+							class="flex items-center gap-x-3 rounded-lg p-2 text-base text-slate-900 hover:bg-gray-200"
 							to="/administration"
-							active-class="font-semibold "
+							active-class="font-semibold"
 							@click="closeSidebar"
 						>
 							<ClipboardCheckIcon
 								class="h-4 w-4 text-gray-900 md:h-5 md:w-5"
-							/><span>Verwaltung</span>
+							/><span>Reservierungen</span>
 						</RouterLink>
 					</li>
 
 					<li>
 						<RouterLink
-							class="flex w-full items-center gap-x-3 rounded-lg p-2 text-sm text-slate-900 hover:bg-gray-200 md:text-base"
+							class="flex w-full items-center gap-x-3 rounded-lg p-2 text-base text-slate-900 hover:bg-gray-200"
 							to="/"
 							active-class="font-semibold"
 							@click="closeSidebar"
@@ -82,7 +76,7 @@ const closeSidebar = () => window.HSSideabr.close(nav.value);
 
 					<li class="">
 						<RouterLink
-							class="flex w-full items-center gap-x-3 rounded-lg p-2 text-sm text-slate-900 hover:bg-gray-200 md:text-base"
+							class="flex w-full items-center gap-x-3 rounded-lg p-2 text-base text-slate-900 hover:bg-gray-200"
 							to="/search"
 							active-class="font-semibold"
 							@click="closeSidebar"
@@ -93,16 +87,7 @@ const closeSidebar = () => window.HSSideabr.close(nav.value);
 						</RouterLink>
 					</li>
 					<li>
-						<RouterLink
-							class="flex w-full items-center gap-x-3 rounded-lg p-2 text-sm text-slate-900 hover:bg-gray-200 md:text-base"
-							to="/categories"
-							active-class="font-semibold"
-							@click="closeSidebar"
-						>
-							<LibraryIcon
-								class="h-4 w-4 text-gray-900 md:h-5 md:w-5"
-							/><span>Kategorie</span>
-						</RouterLink>
+						<CategoryDiscloure></CategoryDiscloure>
 					</li>
 				</ul>
 			</nav>
@@ -111,7 +96,7 @@ const closeSidebar = () => window.HSSideabr.close(nav.value);
 		<div class="fixed inset-x-0 bottom-4 space-y-2 p-2 text-sm">
 			<RouterLink
 				class="flex w-full items-center gap-x-3 rounded-lg border-gray-900 p-2 text-slate-900 hover:bg-gray-200 md:text-base"
-				to="/profil"
+				to="#"
 				active-class="font-semibold"
 				@click="closeSidebar"
 			>

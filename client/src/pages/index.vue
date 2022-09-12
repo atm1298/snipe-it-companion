@@ -27,12 +27,27 @@ fetch("http://localhost:3000/reservation?userId=1", options)
 <template>
 	<div class="grid w-full grid-cols-1 gap-4 p-2 md:grid-cols-2 md:p-4">
 		<div class="h-min rounded-2xl md:border md:border-gray-200 md:p-4">
-			<h1 class="p-2">Ausleihübersicht</h1>
-			<BaseDiscloure default-open title="Laufende Ausleihe">
+			<form method="get" action="/assets" class="relative mb-3 block md:hidden">
+				<input
+					type="search"
+					id="search"
+					name="search"
+					class="block w-full rounded-xl border-gray-200 bg-gray-200 pl-10 text-sm focus:z-10 focus:border-gray-800 focus:ring-gray-200"
+					placeholder="Suche"
+				/>
+				<div
+					class="pointer-events-none absolute inset-y-0 left-0 z-20 flex items-center pl-4"
+				>
+					<SearchIcon class="h-4 w-4 text-gray-900"></SearchIcon>
+				</div>
+			</form>
+			<h1 class="px-2">Ausleihübersicht</h1>
+			<BaseDiscloure default-open theme="default" title="Laufende Ausleihe">
 				<AssetStatus
 					role="user"
 					v-for="reservation in reservations"
 					:key="reservation.id"
+					:id="reservation.asset.id"
 					status="now"
 					:image="reservation.asset.image"
 					:name="reservation.asset.name"
@@ -41,11 +56,12 @@ fetch("http://localhost:3000/reservation?userId=1", options)
 				>
 				</AssetStatus>
 			</BaseDiscloure>
-			<BaseDiscloure default-open title="Kommende Ausleihe">
+			<BaseDiscloure default-open theme="default" title="Kommende Ausleihe">
 				<AssetStatus
 					role="user"
 					v-for="reservation in reservations"
 					:key="reservation.id"
+					:id="reservation.asset.id"
 					status="soon"
 					:image="reservation.asset.image"
 					:name="reservation.asset.name"
@@ -54,12 +70,13 @@ fetch("http://localhost:3000/reservation?userId=1", options)
 				>
 				</AssetStatus
 			></BaseDiscloure>
-			<BaseDiscloure default-open title="Vergangene Ausleihe">
+			<BaseDiscloure default-open theme="default" title="Vergangene Ausleihe">
 				<AssetStatus
 					role="user"
 					v-for="reservation in reservations"
 					:key="reservation.id"
 					status="past"
+					:id="reservation.asset.id"
 					:image="reservation.asset.image"
 					:name="reservation.asset.name"
 					:dateEnd="reservation.dateEnd"
