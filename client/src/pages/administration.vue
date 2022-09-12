@@ -27,9 +27,10 @@ fetch("http://localhost:3000/reservation?userId=1", options)
 		</div>
 		<div class="h-min rounded-2xl md:border md:border-gray-200 md:p-4">
 			<h1 class="p-2">Reservierungen</h1>
-			<BaseDiscloure default-open title="Laufende Reservierungen">
+			<BaseDiscloure default-open theme="default" title="Laufende Reservierungen">
 				<AssetStatus
 					role="admin"
+					:id="reservation.asset.id"
 					v-for="reservation in reservations"
 					:key="reservation.id"
 					status="now"
@@ -39,9 +40,10 @@ fetch("http://localhost:3000/reservation?userId=1", options)
 				>
 				</AssetStatus>
 			</BaseDiscloure>
-			<BaseDiscloure default-open title="Kommende Reservierungen">
+			<BaseDiscloure default-open theme="default" title="Kommende Reservierungen">
 				<AssetStatus
 					role="admin"
+					:id="reservation.asset.id"
 					v-for="reservation in reservations"
 					:key="reservation.id"
 					status="soon"
@@ -51,9 +53,10 @@ fetch("http://localhost:3000/reservation?userId=1", options)
 				>
 				</AssetStatus
 			></BaseDiscloure>
-			<BaseDiscloure title="Vergangene Reservierungen">
+			<BaseDiscloure theme="default" title="Vergangene Reservierungen">
 				<AssetStatus
 					role="admin"
+					:id="reservation.asset.id"
 					v-for="reservation in reservations"
 					:key="reservation.id"
 					status="past"
