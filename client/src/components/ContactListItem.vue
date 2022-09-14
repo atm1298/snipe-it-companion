@@ -7,16 +7,12 @@ defineProps<{
 </script>
 
 <template>
-	<div class="flex flex-row justify-start space-x-4">
-		<h3 class="w-16">Name</h3>
-		<p>{{ name }}</p>
+	<div class="grid grid-cols-3">
+		<p class="font-normal text-gray-500">Name</p>
+		<p class="col-span-2 font-medium text-gray-900">{{ name }}</p>
 	</div>
-	<div class="flex flex-row justify-start space-x-4">
-		<h3 class="w-16">E-Mail</h3>
-		<p>{{ email }}</p>
-	</div>
-	<div class="flex flex-row justify-start space-x-4">
-		<h3 class="w-16">Abholort</h3>
-		<p>{{ room }}</p>
+	<div class="grid grid-cols-3">
+		<p class="font-normal text-gray-500">E-Mail</p>
+		<p class="col-span-2 font-medium text-gray-900">{{ email }}</p>
 	</div>
 </template>

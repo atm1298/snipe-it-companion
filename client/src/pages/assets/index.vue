@@ -27,7 +27,7 @@ fetch("http://localhost:3000/assets?" + searchParams, options)
 </script>
 
 <template>
-	<div v-if="assets" class="h-full">
+	<div v-if="assets" class="h-full p-2">
 		<!-- <BaseBreadcrumbs /> -->
 		<BaseFilter class=""></BaseFilter>
 		<div v-if="assets.length > 0" class="grid grid-cols-2 gap-4 md:p-4">

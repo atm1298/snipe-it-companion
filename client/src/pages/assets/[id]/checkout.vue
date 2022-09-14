@@ -13,7 +13,7 @@ const step = ref(0);
 const infos = [
 	{
 		name: "Name Nachname",
-		email: "nachname@imis.uni-luebeck.de",
+		email: "sjchroeder@imis.uni-luebeck.de",
 		room: "Geb. 64, Raum 1.05",
 	},
 ];
@@ -78,11 +78,21 @@ function reserveAsset() {
 		</div>
 	</div>
 	<div v-if="step == 1 && asset" class="">
-		<h1 class="p-2 md:p-4">Zusammenfassung</h1>
+		<h2 class="p-2 md:p-4">Reservierungszusammenfassung</h2>
 
-		<div class="grid grid-cols-1 gap-4 p-2 md:grid-cols-2 md:p-4">
-			<div class="h-min rounded-2xl border p-2 md:p-4">
+		<div class="grid grid-cols-1 gap-2 p-2 md:grid-cols-2 xl:grid-cols-[1fr_2fr]">
+			<div>
 				<BaseCard
+					class="hidden md:block"
+					theme="default"
+					:key="asset.id"
+					:id="asset.id"
+					:name="asset.name"
+					:image="asset.image"
+					:status="asset.status_label.name"
+				></BaseCard>
+				<BaseCard
+					class="block md:hidden"
 					theme="checkout"
 					:key="asset.id"
 					:id="asset.id"
@@ -91,29 +101,29 @@ function reserveAsset() {
 					:status="asset.status_label.name"
 				></BaseCard>
 			</div>
-			<div class="h-min rounded-2xl border p-2 md:p-4">
-				<div class="mb-3 space-y-4">
-					<h2 class="">Ausleihzeitraum</h2>
-					<p class="rounded-lg bg-gray-200 p-2">
-						{{ dateStore.formattedStart }} - {{ dateStore.formattedEnd }}
-					</p>
+			<div class="w-full">
+				<div class="mb-3 space-y-2 rounded-xl border p-2">
+					<h3 class="">Ausleihinformationen</h3>
+					<div class="grid grid-cols-3">
+						<p class="font-normal text-gray-500">Ort</p>
+						<p class="col-span-2 font-medium text-gray-900">
+							{{ asset.location.name }}
+						</p>
+					</div>
+					<div class="grid grid-cols-3">
+						<p class="font-normal text-gray-500">Abholung</p>
+						<p class="col-span-2 font-medium text-gray-900">
+							{{ dateStore.formattedStart }}
+						</p>
+					</div>
+					<div class="grid grid-cols-3">
+						<p class="font-normal text-gray-500">Rückgabe</p>
+						<p class="col-span-2 font-medium text-gray-900">
+							{{ dateStore.formattedEnd }}
+						</p>
+					</div>
 				</div>
-				<ContactList :infos="infos"></ContactList>
-			</div>
-			<div class="pb-20 md:col-span-2">
-				<h2>Bla-Erklärung</h2>
-				<p>
-					Die Rechtsgrundlage für die Verarbeitung personenbezogener Daten ist
-					Art. 6 Abs. 1 lit. f DSGVO. Unsere ausführlichen
-					Datenschutzrechtlichen Hinweise sind hier zu finden. Diese Webseite
-					nutzt ein Programm zur statistischen Auswertung der Nutzung der
-					Seiten. Für diese Zwecke wird die Open-Source-Software Matomo (ehemals
-					Piwik) eingesetzt. Die verwendete Software ist nach den Empfehlungen
-					des Unabhängigen Landeszentrums für Datenschutz Schleswig-Holstein
-					konfiguriert und folgt den geltenden Datenschutzbestimmungen. Die zum
-					Zweck der statistischen Auswertung verwendeten "Cookies" sind
-					Textdateien, die nur temporär auf Ihrem Computer gespeichert werden.
-				</p>
+				<ContactList :infos="infos" class="rounded-xl border p-2"></ContactList>
 			</div>
 		</div>
 		<div
@@ -124,7 +134,7 @@ function reserveAsset() {
 			>
 			<RouterLink to="/"
 				><BaseButton theme="primary" @click="reserveAsset"
-					>Zurück zum Dashboard
+					>Reservieren
 				</BaseButton></RouterLink
 			>
 		</div>

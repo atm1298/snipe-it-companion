@@ -13,9 +13,9 @@ server.register(cors);
 
 // ALLE ASSETS TEST HEHE
 const options = {
-	method: 'GET',
 	headers: {
 		Accept: 'application/json',
+		'content-type': 'application/json',
 		Authorization: 'Bearer ' + process.env.API_KEY,
 	},
 };
@@ -30,7 +30,7 @@ server.get('/assets', async function (request, reply) {
 	)
 		.then((response) => response.json())
 		.catch((err) => console.error(err));
-	console.log(assets);
+
 	return { assets };
 });
 
@@ -45,7 +45,7 @@ server.get<{ Params: { id: string } }>(
 		)
 			.then((response) => response.json())
 			.catch((err) => console.error(err));
-		console.log(asset);
+
 		return { asset };
 	}
 );
@@ -79,14 +79,12 @@ server.post('/reservation', async (req, res) => {
 server.get('/reservation', async (req, res) => {
 	const reservations = await prisma.reservation.findMany({
 		where: {
-			userId: Number(req.query.userId),
+			userId: req.query.userId ? Number(req.query.userId) : undefined,
 		},
 	});
 	const reservationsWithAssets = await Promise.all(
 		reservations.map(async (reservation) => ({
-			id: reservation.id,
-			dateStart: reservation.dateStart,
-			dateEnd: reservation.dateEnd,
+			...reservation,
 			asset: await fetch(
 				'https://snipeit.imis.uni-luebeck.de/api/v1/hardware/' +
 					reservation.assetId,
@@ -95,6 +93,64 @@ server.get('/reservation', async (req, res) => {
 		}))
 	);
 	return reservationsWithAssets;
+});
+
+server.post('/reservation/receive', async (req, res) => {
+	const { reservationId } = req.body;
+	const reservation = await prisma.reservation.update({
+		where: {
+			id: reservationId,
+		},
+		data: {
+			received: true,
+		},
+	});
+	console.log(reservation);
+
+	const asset = await fetch(
+		'https://snipeit.imis.uni-luebeck.de/api/v1/hardware/' +
+			reservation.assetId +
+			'/checkout',
+		{
+			...options,
+			method: 'post',
+			body: JSON.stringify({
+				checkout_to_type: 'user',
+				status_id: 4,
+				assigned_user: 14,
+			}),
+		}
+	)
+		.then((response) => response.json())
+		.catch((err) => console.error(err));
+	console.log(asset);
+});
+
+server.post('/reservation/return', async (req, res) => {
+	const { reservationId } = req.body;
+	const reservation = await prisma.reservation.update({
+		where: {
+			id: reservationId,
+		},
+		data: {
+			returned: true,
+		},
+	});
+	const asset = await fetch(
+		'https://snipeit.imis.uni-luebeck.de/api/v1/hardware/' +
+			reservation.assetId +
+			'/checkin',
+		{
+			...options,
+			method: 'post',
+			body: JSON.stringify({
+				status_id: 4,
+			}),
+		}
+	)
+		.then((response) => response.json())
+		.catch((err) => console.error(err));
+	console.log(asset);
 });
 
 // Run the server!

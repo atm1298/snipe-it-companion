@@ -49,7 +49,7 @@ fetch("http://localhost:3000/categories", options)
 	<div class="w-full">
 		<Disclosure v-slot="{ open }">
 			<DisclosureButton
-				class="flex w-full items-center gap-x-3 rounded-lg p-2 text-base text-slate-900 hover:rounded-lg hover:bg-gray-200"
+				class="flex w-full items-center gap-x-3 p-2 text-base text-slate-900 hover:rounded-lg hover:bg-gray-200"
 			>
 				<div class="flex w-full items-center gap-x-3">
 					<ViewGridAddIcon
@@ -63,8 +63,8 @@ fetch("http://localhost:3000/categories", options)
 				/>
 			</DisclosureButton>
 
-			<DisclosurePanel class="pb-4 text-sm text-gray-900"
-				><div class="mb-2 grid h-min w-full grid-cols-1 gap-4 rounded-lg md:p-4">
+			<DisclosurePanel class="pl-6 text-sm text-gray-900"
+				><div class="mb-2 grid h-min w-full grid-cols-1 gap-4 md:p-4">
 					<template v-if="!subcategories">
 						<CategoryListItem
 							class="hover:rounded-lg hover:bg-gray-200"
@@ -79,7 +79,7 @@ fetch("http://localhost:3000/categories", options)
 					<template v-else>
 						<button
 							@click="subcategories = null"
-							class="flex w-full flex-row items-center gap-2 border-b border-gray-200 p-2 text-lg hover:bg-gray-200"
+							class="flex w-full flex-row items-center gap-2 border-b border-gray-200 p-2 text-base hover:bg-gray-200"
 						>
 							<ChevronLeftIcon
 								class="h-4 w-4 text-gray-600"
@@ -89,6 +89,7 @@ fetch("http://localhost:3000/categories", options)
 							</div>
 						</button>
 						<CategoryListItem
+							class="hover:rounded-lg hover:bg-gray-200"
 							v-for="subcategory in subcategories"
 							:id="subcategory.id"
 							:key="subcategory.id"

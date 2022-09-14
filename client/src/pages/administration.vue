@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { startOfToday } from "date-fns";
+import { computed, ref } from "vue";
 
 import AssetStatus from "../components/AssetStatus.vue";
 import BaseCalender from "../components/BaseCalender.vue";
@@ -12,12 +13,42 @@ const options = {
 	},
 };
 const reservations = ref();
-fetch("http://localhost:3000/reservation?userId=1", options)
+fetch("http://localhost:3000/reservation", options)
 	.then(res => res.json())
 	.then(data => {
 		console.log(data);
 		reservations.value = data;
 	});
+const upcomingReservations = computed(
+	() =>
+		reservations.value?.filter(
+			reservation =>
+				new Date(reservation.dateStart) > startOfToday() && !reservation.received
+		) ?? []
+);
+const upcomingReturns = computed(
+	() =>
+		reservations.value?.filter(
+			reservation =>
+				new Date(reservation.dateEnd) > startOfToday() &&
+				reservation.received &&
+				!reservation.returned
+		) ?? []
+);
+function updateReservation(type: string, id: number) {
+	fetch("http://localhost:3000/reservation/" + type, {
+		headers: {
+			Accept: "application/json",
+			"Content-Type": "application/json",
+		},
+		method: "POST",
+		body: JSON.stringify({
+			reservationId: id,
+		}),
+	})
+		.then(res => res.json())
+		.then(data => console.log(data));
+}
 </script>
 
 <template>
@@ -27,42 +58,45 @@ fetch("http://localhost:3000/reservation?userId=1", options)
 		</div>
 		<div class="h-min rounded-2xl md:border md:border-gray-200 md:p-4">
 			<h1 class="p-2">Reservierungen</h1>
-			<BaseDiscloure default-open theme="default" title="Laufende Reservierungen">
+			<BaseDiscloure
+				default-open
+				theme="default"
+				title="Rückgabe"
+				v-if="upcomingReturns.length > 0"
+			>
 				<AssetStatus
 					role="admin"
 					:id="reservation.asset.id"
-					v-for="reservation in reservations"
+					v-for="reservation in upcomingReturns"
 					:key="reservation.id"
 					status="now"
 					:name="reservation.asset.name"
 					:dateEnd="reservation.dateEnd"
 					:dateStart="reservation.dateStart"
+					@accept="updateReservation('return', reservation.id)"
+					popover-accept="zurückgebracht"
+					popover-deny="nicht zurückgebracht"
 				>
 				</AssetStatus>
 			</BaseDiscloure>
-			<BaseDiscloure default-open theme="default" title="Kommende Reservierungen">
+			<BaseDiscloure
+				default-open
+				theme="default"
+				title="Abholung"
+				v-if="upcomingReservations.length > 0"
+			>
 				<AssetStatus
 					role="admin"
 					:id="reservation.asset.id"
-					v-for="reservation in reservations"
+					v-for="reservation in upcomingReservations"
 					:key="reservation.id"
 					status="soon"
 					:name="reservation.asset.name"
 					:dateEnd="reservation.dateEnd"
 					:dateStart="reservation.dateStart"
-				>
-				</AssetStatus
-			></BaseDiscloure>
-			<BaseDiscloure theme="default" title="Vergangene Reservierungen">
-				<AssetStatus
-					role="admin"
-					:id="reservation.asset.id"
-					v-for="reservation in reservations"
-					:key="reservation.id"
-					status="past"
-					:name="reservation.asset.name"
-					:dateEnd="reservation.dateEnd"
-					:dateStart="reservation.dateStart"
+					@accept="updateReservation('receive', reservation.id)"
+					popover-accept="abgeholt"
+					popover-deny="nicht abgeholt"
 				>
 				</AssetStatus
 			></BaseDiscloure>

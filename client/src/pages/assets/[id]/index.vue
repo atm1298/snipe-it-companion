@@ -9,6 +9,7 @@ import BaseButton from "../../../components/BaseButton.vue";
 import BaseDateTimePicker from "../../../components/BaseDateTimePicker.vue";
 import ButtonInfo from "../../../components/ButtonInfo.vue";
 import ContactList from "../../../components/ContactList.vue";
+import DateRange from "../../../components/DateRange.vue";
 import DetailsList from "../../../components/DetailsList.vue";
 
 interface Props {
@@ -87,7 +88,9 @@ const dateStore = useDateStore();
 				</div>
 			</div>
 
-			<div class="fixed inset-x-0 bottom-0 border-t border-gray-300 bg-white p-2">
+			<div
+				class="fixed inset-x-0 bottom-0 border-t border-gray-300 bg-white p-2 lg:hidden"
+			>
 				<BaseButton
 					v-if="dateStore.start == null"
 					theme="primary"
@@ -97,11 +100,8 @@ const dateStore = useDateStore();
 				>
 					<span>Verfügbarkeit einsehen</span>
 				</BaseButton>
-				<div
-					v-else
-					class="flex items-center justify-between gap-4 lg:justify-end"
-				>
-					<div class="block flex flex-col lg:hidden">
+				<div v-else class="flex items-center justify-between gap-4">
+					<div class="flex flex-col lg:hidden">
 						<p>{{ asset.status_label.name }}</p>
 						<span
 							class="hs-dropdown-toggle cursor-pointer text-sm text-gray-700"
@@ -117,6 +117,12 @@ const dateStore = useDateStore();
 						</BaseButton></RouterLink
 					>
 				</div>
+			</div>
+			<div class="hidden p-2 lg:block">
+				<DateRange class="border-white"></DateRange>
+				<RouterLink :to="`/assets/${id}/checkout`"
+					><BaseButton theme="primary"> Reservieren </BaseButton></RouterLink
+				>
 			</div>
 		</div>
 		<div

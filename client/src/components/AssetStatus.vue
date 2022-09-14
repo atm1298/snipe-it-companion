@@ -7,6 +7,10 @@ import BaseTooltip from "./BaseTooltip.vue";
 interface Props {
 	status: "soon" | "now" | "past";
 	role: "admin" | "user";
+	popoverAccept: string;
+	popoverDeny: string;
+	popoverEdit: string;
+	popoverDelete: string;
 	id: number;
 	name: string;
 	dateEnd: string;
@@ -14,7 +18,7 @@ interface Props {
 	image?: string;
 }
 const props = defineProps<Props>();
-
+const emits = defineEmits(["accept", "deny", "edit", "delete"]);
 const options = {
 	weekday: "short",
 	day: "numeric",
@@ -58,8 +62,12 @@ function getStatusText() {
 					</p>
 				</div>
 				<div class="flex flex-col gap-2 lg:flex-row">
-					<BaseTooltip theme="edit" :id="id">Ausleihe bearbeiten</BaseTooltip>
-					<BaseTooltip theme="bad" :id="id">Ausleihe löschen</BaseTooltip>
+					<BaseTooltip theme="edit" :id="id" @click="emits('edit')">{{
+						popoverEdit
+					}}</BaseTooltip>
+					<BaseTooltip theme="bad" :id="id" @click="emits('delete')">{{
+						popoverDelete
+					}}</BaseTooltip>
 				</div>
 			</div>
 
@@ -97,8 +105,12 @@ function getStatusText() {
 			</div>
 		</div>
 		<div class="flex flex-col gap-2 lg:flex-row">
-			<BaseTooltip theme="good">abgeholt</BaseTooltip>
-			<BaseTooltip theme="bad">nicht abgeholt</BaseTooltip>
+			<BaseTooltip theme="good" @click="emits('accept')">{{
+				popoverAccept
+			}}</BaseTooltip>
+			<BaseTooltip theme="bad" @click="emits('deny')">{{
+				popoverDeny
+			}}</BaseTooltip>
 		</div>
 	</div>
 </template>

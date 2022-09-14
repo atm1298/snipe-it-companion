@@ -10,7 +10,7 @@ const dateStore = useDateStore();
 </script>
 
 <template>
-	<div class="h-min rounded-2xl border border-gray-200 p-2">
+	<div class="h-min rounded-2xl border-gray-200 p-2">
 		<h2>Zeitraum</h2>
 		<p class="mb-2">Zu wann wird das Material benötigt?</p>
 		<div class="hidden space-y-2 md:block">
