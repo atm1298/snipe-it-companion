@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
 
-import BaseSideBar from "./components/BaseSideBar.vue";
+import SideBar from "./components/SideBar.vue";
 </script>
 
 <template>
 	<div class="min-h-screen grid-cols-[auto_1fr] lg:grid">
-		<BaseSideBar></BaseSideBar>
+		<SideBar></SideBar>
 
 		<main class="mx-auto flex w-full">
 			<RouterView />
