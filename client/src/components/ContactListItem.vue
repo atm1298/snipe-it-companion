@@ -8,11 +8,11 @@ defineProps<{
 
 <template>
 	<div class="grid grid-cols-3">
-		<p class="font-normal text-gray-500">Name</p>
-		<p class="col-span-2 font-medium text-gray-900">{{ name }}</p>
+		<p class="text-gray-600">Name</p>
+		<p class="col-span-2 font-medium">{{ name }}</p>
 	</div>
 	<div class="grid grid-cols-3">
-		<p class="font-normal text-gray-500">E-Mail</p>
-		<p class="col-span-2 font-medium text-gray-900">{{ email }}</p>
+		<p class="text-gray-600">E-Mail</p>
+		<p class="col-span-2 font-medium">{{ email }}</p>
 	</div>
 </template>

@@ -12,7 +12,7 @@ defineProps<{
 
 <template>
 	<div class="mb-3 space-y-2">
-		<h3>Kontaktinformationen</h3>
+		<h2>Kontaktinformationen</h2>
 		<div class="space-y-2">
 			<ContactListItem
 				v-for="item in infos"

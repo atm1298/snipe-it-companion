@@ -12,7 +12,7 @@ defineProps<Props>();
 	<RouterLink
 		v-if="!!id"
 		:to="`/categories/${id}`"
-		class="flex flex-row items-center justify-between border-b border-gray-200 p-2 text-base hover:rounded-lg hover:bg-gray-200"
+		class="flex flex-row items-center justify-between border-b border-white bg-white p-2 text-base hover:rounded-md hover:bg-gray-200"
 	>
 		<div class="flex flex-row items-center gap-4">
 			<h4>{{ category }}</h4>
@@ -21,7 +21,7 @@ defineProps<Props>();
 	</RouterLink>
 	<button
 		v-else
-		class="flex w-full flex-row items-center justify-between border-b border-gray-200 p-2 text-base hover:rounded-lg hover:bg-gray-200"
+		class="flex w-full flex-row items-center justify-between border-b border-white bg-white p-2 text-base hover:rounded-md hover:bg-gray-200"
 	>
 		<div class="flex flex-row items-center gap-4">
 			<h4>{{ category }}</h4>
