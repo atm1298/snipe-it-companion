@@ -19,7 +19,7 @@ const options = {
 };
 const categories = ref();
 const subcategories = ref();
-fetch("http://localhost:3000/categories", options)
+fetch(import.meta.env.VITE_SERVER_URL + "/categories", options)
 	.then(res => res.json())
 	.then(data => (categories.value = data.categories.rows))
 	.then(() => {
@@ -50,20 +50,20 @@ fetch("http://localhost:3000/categories", options)
 </script>
 
 <template>
-	<div class="w-ful border-b">
+	<div class="w-full">
 		<Disclosure :default-open="defaultOpen" v-slot="{ open }">
 			<DisclosureButton
-				class="flex w-full items-center justify-between rounded-lg p-2 py-4 text-left text-lg text-gray-900 hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-gray-200 focus-visible:ring-opacity-75"
+				class="flex w-full items-center justify-between rounded-lg text-left text-lg text-gray-900 hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-gray-200 focus-visible:ring-opacity-75"
 			>
-				<h2>{{ title }}</h2>
+				<h2 class="mb-4">{{ title }}</h2>
 				<ChevronUpIcon
 					:class="open ? 'rotate-180 transform' : ''"
-					class="h-5 w-5 text-gray-600"
+					class="mb-4 h-5 w-5 text-gray-600"
 				/>
 			</DisclosureButton>
 
 			<DisclosurePanel v-if="theme == 'nav'" class="pb-4 text-sm text-gray-900"
-				><div class="mb-2 grid h-min w-full grid-cols-1 gap-4 rounded-lg md:p-4">
+				><div class="mb-2 grid h-min w-full grid-cols-1 gap-4 rounded-lg md:p-2">
 					<template v-if="!subcategories">
 						<CategoryListItem
 							v-for="category in categories"
@@ -83,7 +83,7 @@ fetch("http://localhost:3000/categories", options)
 						/>
 					</template></div
 			></DisclosurePanel>
-			<DisclosurePanel v-else class="p-2 pb-4 text-sm text-gray-500"
+			<DisclosurePanel v-else class="pb-4 text-base text-gray-500"
 				><slot></slot
 			></DisclosurePanel>
 		</Disclosure>

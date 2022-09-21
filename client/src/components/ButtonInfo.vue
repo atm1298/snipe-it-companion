@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { ChevronRightIcon } from "@heroicons/vue/outline";
+import { ChevronDownIcon } from "@heroicons/vue/outline";
 </script>
 
 <template>
 	<div
-		class="flex flex-row items-center justify-between rounded-xl bg-gray-50 px-4 py-3 text-gray-600"
+		class="flex flex-row items-center justify-between rounded-lg border bg-gray-300 bg-opacity-20 px-3 py-2 text-gray-900 hover:bg-gray-400 hover:bg-opacity-20 focus:ring-gray-200"
 	>
-		<h3 class="text-gray-700"><slot></slot></h3>
-		<ChevronRightIcon class="h-4 w-4"></ChevronRightIcon>
+		<p class="text-base font-semibold text-gray-900"><slot></slot></p>
+		<ChevronDownIcon class="h-4 w-4"></ChevronDownIcon>
 	</div>
 </template>

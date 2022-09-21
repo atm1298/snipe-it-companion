@@ -5,7 +5,7 @@
 		<input
 			type="radio"
 			name="hs-radio-vertical-group"
-			class="mt-0.5 shrink-0 rounded-xl border-gray-200 text-gray-600 focus:ring-gray-500"
+			class="mt-0.5 shrink-0 rounded-md border-gray-300 text-gray-600 focus:ring-gray-500"
 			id="hs-radio-vertical-group-1"
 			checked
 		/>

@@ -10,7 +10,7 @@ import BaseRadioButton from "./BaseRadioButton.vue";
 	<div class="mb-2 flex w-full justify-end">
 		<button
 			type="button"
-			class="hs-dropdown-toggle inline-flex items-center gap-2 rounded-xl bg-gray-50 p-2 text-xs transition-all hover:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:ring-offset-1"
+			class="hs-dropdown-toggle inline-flex items-center gap-2 rounded-md bg-gray-50 p-2 text-xs transition-all hover:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:ring-offset-1"
 			data-hs-offcanvas="#hs-offcanvas-right"
 		>
 			<FilterIcon class="h-4 w-4 text-gray-700"></FilterIcon>

@@ -86,7 +86,7 @@ import { SearchIcon } from "@heroicons/vue/outline";
 							type="search"
 							id="search"
 							name="search"
-							class="focus:border-gray-20000 block w-full rounded-xl border-gray-50 bg-gray-100 py-3 px-4 pl-11 text-sm focus:z-10 focus:ring-gray-200"
+							class="focus:border-gray-30000 block w-full rounded-md border-gray-50 bg-gray-100 py-3 px-4 pl-11 text-sm focus:z-10 focus:ring-gray-200"
 							placeholder="Suche"
 						/>
 						<div

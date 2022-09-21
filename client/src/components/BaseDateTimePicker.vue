@@ -1,7 +1,38 @@
 <script setup lang="ts">
+import { computed, ref } from "vue";
+
 import { useDateStore } from "@/stores/date";
 
+interface Props {
+	assetId?: number;
+}
+
+const props = defineProps<Props>();
 const dateStore = useDateStore();
+const options = {
+	headers: {
+		Accept: "application/json",
+		"Content-Type": "application/json",
+	},
+};
+const reservations = ref([]);
+if (props.assetId) {
+	fetch(
+		import.meta.env.VITE_SERVER_URL + "/reservation?assetId=" + props.assetId,
+		options
+	)
+		.then(res => res.json())
+		.then(data => {
+			console.log(data);
+			reservations.value = data;
+		});
+}
+const reservedDays = computed(() =>
+	reservations.value.map(reservation => ({
+		start: new Date(reservation.dateStart),
+		end: new Date(reservation.dateEnd),
+	}))
+);
 </script>
 
 <template>
@@ -19,7 +50,7 @@ const dateStore = useDateStore();
 			}"
 			:minute-increment="5"
 			color="orange"
-			:disabled-dates="{ weekdays: [1, 7] }"
+			:disabled-dates="[...reservedDays, { weekdays: [1, 7] }]"
 			is-expanded
 		/>
 		<div class="mt-2 flex">

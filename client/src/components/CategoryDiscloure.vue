@@ -14,7 +14,7 @@ const options = {
 
 const categories = ref();
 const subcategories = ref();
-fetch("http://localhost:3000/categories", options)
+fetch(import.meta.env.VITE_SERVER_URL + "/categories", options)
 	.then(res => res.json())
 	.then(data => (categories.value = data.categories.rows))
 	.then(() => {
@@ -49,13 +49,13 @@ fetch("http://localhost:3000/categories", options)
 	<div class="w-full">
 		<Disclosure v-slot="{ open }">
 			<DisclosureButton
-				class="flex w-full items-center gap-x-3 p-2 text-base text-slate-900 hover:rounded-lg hover:bg-gray-200"
+				class="flex w-full items-center gap-x-3 p-2 text-base text-slate-900 hover:rounded-md hover:bg-gray-100"
 			>
-				<div class="flex w-full items-center gap-x-3">
+				<div class="flex w-full items-center gap-3">
 					<ViewGridAddIcon
 						class="h-4 w-4 text-gray-900 md:h-5 md:w-5"
 					></ViewGridAddIcon>
-					<slot>Kategorien</slot>
+					<slot class="">Kategorien</slot>
 				</div>
 				<ChevronUpIcon
 					:class="open ? 'rotate-180 transform' : ''"
@@ -64,10 +64,10 @@ fetch("http://localhost:3000/categories", options)
 			</DisclosureButton>
 
 			<DisclosurePanel class="pl-6 text-sm text-gray-900"
-				><div class="mb-2 grid h-min w-full grid-cols-1 gap-4 md:p-4">
+				><div class="my-2 grid h-min w-full grid-cols-1 gap-4 md:p-4">
 					<template v-if="!subcategories">
 						<CategoryListItem
-							class="hover:rounded-lg hover:bg-gray-200"
+							class="hover:rounded-md hover:bg-gray-100"
 							v-for="category in categories"
 							@click="subcategories = category[1]"
 							:category="category[0]"
@@ -79,7 +79,7 @@ fetch("http://localhost:3000/categories", options)
 					<template v-else>
 						<button
 							@click="subcategories = null"
-							class="flex w-full flex-row items-center gap-2 border-b border-gray-200 p-2 text-base hover:bg-gray-200"
+							class="flex w-full flex-row items-center gap-2 border-b border-gray-300 p-2 text-base hover:rounded-md hover:bg-gray-100"
 						>
 							<ChevronLeftIcon
 								class="h-4 w-4 text-gray-600"
@@ -89,7 +89,7 @@ fetch("http://localhost:3000/categories", options)
 							</div>
 						</button>
 						<CategoryListItem
-							class="hover:rounded-lg hover:bg-gray-200"
+							class="hover:rounded-md hover:bg-gray-100"
 							v-for="subcategory in subcategories"
 							:id="subcategory.id"
 							:key="subcategory.id"
