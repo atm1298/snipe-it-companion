@@ -14,7 +14,7 @@ const dates = ref({
 	end: props.dateEnd,
 });
 watch(dates, () => {
-	fetch("http://localhost:3000/reservation/patch", {
+	fetch(import.meta.env.VITE_SERVER_URL + "/reservation/patch", {
 		headers: {
 			Accept: "application/json",
 			"Content-Type": "application/json",
@@ -33,11 +33,9 @@ const isActive = computed(() => new Date(props.dateStart) < new Date());
 </script>
 
 <template>
-	<form class="rounded bg-white text-base font-medium" @submit.prevent>
+	<form class="rounded-xl text-base font-medium" @submit.prevent>
 		<div>
-			<span class="mb-2 block text-left text-base font-medium text-gray-900"
-				>Ausleihzeitraum</span
-			>
+			<h3 class="mb-2 block text-left text-base text-gray-900">Ausleihzeitraum</h3>
 			<v-date-picker
 				v-model="dates"
 				mode="dateTime"
@@ -55,14 +53,14 @@ const isActive = computed(() => new Date(props.dateStart) < new Date());
 				:disabled-dates="{ weekdays: [1, 7] }"
 			>
 				<template v-slot="{ inputValue, inputEvents, isDragging }">
-					<div class="flex flex-col items-center justify-start sm:flex-row">
+					<div class="flex flex-row items-center justify-start">
 						<div class="relative flex-grow">
 							<CalendarIcon
 								class="pointer-events-none absolute mx-2 h-full w-4 text-gray-600"
 							></CalendarIcon>
 							<input
 								:disabled="!isActive"
-								class="w-full flex-grow rounded border bg-gray-100 py-1 pl-8 pr-2"
+								class="w-full flex-grow rounded-md border bg-gray-100 py-1 pl-8 pr-2"
 								:class="isDragging ? 'text-gray-600' : 'text-gray-900'"
 								:value="inputValue.start"
 								v-on="inputEvents.start"
@@ -70,7 +68,7 @@ const isActive = computed(() => new Date(props.dateStart) < new Date());
 						</div>
 						<span class="m-2 flex-shrink-0">
 							<ArrowNarrowRightIcon
-								class="hidden h-4 w-4 text-gray-600 md:block"
+								class="block h-4 w-4 text-gray-600"
 							></ArrowNarrowRightIcon
 						></span>
 						<div class="relative flex-grow">
@@ -78,7 +76,7 @@ const isActive = computed(() => new Date(props.dateStart) < new Date());
 								class="pointer-events-none absolute mx-2 h-full w-4 text-gray-600"
 							></CalendarIcon>
 							<input
-								class="w-full flex-grow rounded border bg-gray-100 py-1 pl-8 pr-2"
+								class="w-full flex-grow rounded-md border bg-gray-100 py-1 pl-8 pr-2"
 								:class="isDragging ? 'text-gray-600' : 'text-gray-900'"
 								:value="inputValue.end"
 								v-on="inputEvents.end"
