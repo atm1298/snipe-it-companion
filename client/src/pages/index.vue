@@ -1,31 +1,24 @@
 <script setup lang="ts">
-import { SearchIcon } from "@heroicons/vue/outline";
-import { ref } from "vue";
-
-import CategoryList from "@/components/CategoryList.vue";
 import DateRange from "@/components/DateRange.vue";
 
-import AssetStatus from "../components/AssetStatus.vue";
 import BaseButton from "../components/BaseButton.vue";
-import BaseDiscloure from "../components/BaseDiscloure.vue";
-import deLocale from "date-fns/locale/de";
-import BaseTooltip from "./BaseTooltip.vue";
+import Tab from "../components/TabUser.vue";
 // ALLE ASSETS TEST HEHE
-const options = {
+/* const options = {
 	headers: {
 		Accept: "application/json",
 		"Content-Type": "application/json",
 	},
-};
-const reservations = ref();
-fetch("http://localhost:3000/reservation?userId=1", options)
+}; */
+/* const reservations = ref();
+fetch(import.meta.env.VITE_SERVER_URL + "/reservation?userId=1", options)
 	.then(res => res.json())
 	.then(data => {
 		console.log(data);
 		reservations.value = data;
-	});
+	}); */
 
-const upcomingReservations = computed(
+/* const upcomingReservations = computed(
 	() =>
 		reservations.value?.filter(
 			reservation =>
@@ -46,13 +39,13 @@ const pastReservations = computed(
 	() =>
 		reservations.value?.filter(
 			reservation =>
-				new Date(reservation.dateEnd) > startOfToday() &&
+				new Date(reservation.dateEnd) < startOfToday() &&
 				reservation.received &&
 				reservation.returned
 		) ?? []
 );
-function deleteReservation(type: string, id: number) {
-	fetch("http://localhost:3000/reservation/" + type, {
+function deleteReservation(id: number) {
+	fetch(import.meta.env.VITE_SERVER_URL + "/reservation/delete", {
 		headers: {
 			Accept: "application/json",
 			"Content-Type": "application/json",
@@ -65,47 +58,78 @@ function deleteReservation(type: string, id: number) {
 		.then(res => res.json())
 		.then(data => console.log(data));
 }
+
+function editReservation(id: number) {
+	fetch(import.meta.env.VITE_SERVER_URL + "/reservation/" + { id }, {
+		headers: {
+			Accept: "application/json",
+			"Content-Type": "application/json",
+		},
+		method: "POST",
+		body: JSON.stringify({
+			reservationId: id,
+		}),
+	})
+		.then(res => res.json())
+		.then(data => console.log(data));
+} */
 </script>
 
 <template>
-	<div class="grid w-full grid-cols-1 gap-4 p-2 md:grid-cols-2 md:p-4">
-		<div class="h-min rounded-2xl md:border md:border-gray-200 md:p-4">
-			<h1 class="px-2">Ausleihübersicht</h1>
-			<BaseDiscloure default-open theme="default" title="Laufende Ausleihe">
-				<AssetStatus
-					role="user"
-					v-for="reservation in upcomingReservations"
-					:key="reservation.id"
-					:id="reservation.asset.id"
-					status="now"
-					:image="reservation.asset.image"
-					:name="reservation.asset.name"
-					:dateEnd="reservation.dateEnd"
-					:dateStart="reservation.dateStart"
-					@accept="deleteReservation('edit', reservation.id)"
-					popover-edit="bearbeiten"
-					popover-delete="Löschen"
-				>
-				</AssetStatus>
-			</BaseDiscloure>
-			<BaseDiscloure theme="default" title="Kommende Ausleihe">
+	<div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2 md:p-4">
+		<Tab></Tab>
+		<!-- <div class="flex flex-col gap-4">
+			<h1 class="mb-4">Ausleihübersicht</h1>
+			<BaseDiscloure
+				default-open
+				theme="default"
+				title="Laufende Ausleihe"
+				v-if="upcomingReturns.length > 0"
+			>
 				<AssetStatus
 					role="user"
 					v-for="reservation in upcomingReturns"
 					:key="reservation.id"
 					:id="reservation.asset.id"
-					status="soon"
+					:reservation-id="reservation.id"
+					status="now"
 					:image="reservation.asset.image"
 					:name="reservation.asset.name"
 					:dateEnd="reservation.dateEnd"
 					:dateStart="reservation.dateStart"
-					@accept="deleteReservation('delete', reservation.id)"
+					popover-edit="bearbeiten"
+					@edit="editReservation(reservation.id)"
+				>
+				</AssetStatus>
+			</BaseDiscloure>
+			<BaseDiscloure
+				theme="default"
+				title="Kommende Ausleihe"
+				v-if="upcomingReservations.length > 0"
+			>
+				<AssetStatus
+					role="user"
+					v-for="reservation in upcomingReservations"
+					:key="reservation.id"
+					:id="reservation.asset.id"
+					status="soon"
+					:reservation-id="reservation.id"
+					:image="reservation.asset.image"
+					:name="reservation.asset.name"
+					:dateEnd="reservation.dateEnd"
+					:dateStart="reservation.dateStart"
+					@delete="deleteReservation(reservation.id)"
+					@edit="editReservation(reservation.id)"
 					popover-edit="bearbeiten"
 					popover-delete="Löschen"
 				>
 				</AssetStatus
 			></BaseDiscloure>
-			<BaseDiscloure theme="default" title="Vergangene Ausleihe">
+				<BaseDiscloure
+				theme="default"
+				title="Vergangene Ausleihe"
+				v-if="pastReservations.length > 0"
+			>
 				<AssetStatus
 					role="user"
 					v-for="reservation in pastReservations"
@@ -116,39 +140,37 @@ function deleteReservation(type: string, id: number) {
 					:name="reservation.asset.name"
 					:dateEnd="reservation.dateEnd"
 					:dateStart="reservation.dateStart"
-					@accept="deleteReservation('edit', reservation.id)"
-					popover-edit="bearbeiten"
-					popover-delete="Löschen"
 				>
 				</AssetStatus
-			></BaseDiscloure>
-		</div>
-		<div
-			class="hidden h-min space-y-4 rounded-2xl border border-gray-200 p-4 md:block"
-		>
+			></BaseDiscloure> 
+		</div> -->
+		<div class="hidden h-min space-y-4 border-l border-gray-300 pl-8 md:block">
 			<h1>Neues Material ausleihen</h1>
-			<DateRange class="border-white"></DateRange>
+			<DateRange></DateRange>
 			<div class="p-2">
 				<h2>Material</h2>
 				<p class="mb-2">Nach was für Material suchst du?</p>
-				<form method="get" action="/assets" class="relative mb-4">
-					<input
-						type="search"
-						id="search"
-						name="search"
-						class="block w-full rounded-xl border-gray-200 bg-gray-200 py-3 px-4 pl-11 text-sm hover:bg-gray-300 focus:z-10 focus:border-gray-200 focus:ring-gray-200"
-						placeholder="Suche"
-					/>
-					<div
-						class="pointer-events-none absolute inset-y-0 left-0 z-20 flex items-center pl-4"
-					>
-						<SearchIcon class="h-4 w-4 text-gray-500"></SearchIcon>
+				<form method="get" action="/assets">
+					<div class="relative">
+						<input
+							type="search"
+							id="search"
+							name="search"
+							class="mb-2 block w-full rounded-md border-gray-300 py-3 px-4 pl-11 text-sm focus:z-10 focus:border-orange-500 focus:ring-orange-600"
+							placeholder="Suche"
+						/>
+						<div
+							class="pointer-events-none absolute inset-y-0 left-0 z-20 flex items-center pl-4"
+						>
+							<SearchIcon class="h-4 w-4 text-gray-900"></SearchIcon>
+						</div>
 					</div>
+					<BaseButton theme="primary" class="mb-2 w-full" type="submit"
+						>Suchen</BaseButton
+					>
 				</form>
-
-				<CategoryList class="mb-2" />
 				<RouterLink to="/categories"
-					><BaseButton theme="primary" class="w-full"
+					><BaseButton theme="secondary" class="w-full"
 						>Alle Kategorien anzeigen</BaseButton
 					>
 				</RouterLink>

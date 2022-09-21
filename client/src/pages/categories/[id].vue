@@ -19,7 +19,7 @@ const options = {
 };
 
 const assets = ref<SnipeitAsset[]>();
-fetch("http://localhost:3000/assets?category_id=" + props.id, options)
+fetch(import.meta.env.VITE_SERVER_URL + "/assets?category_id=" + props.id, options)
 	.then(res => res.json())
 	.then((data: { assets: { rows: SnipeitAsset[] } }) => {
 		assets.value = data.assets.rows;
@@ -30,7 +30,10 @@ fetch("http://localhost:3000/assets?category_id=" + props.id, options)
 watch(
 	() => props.id,
 	() => {
-		fetch("http://localhost:3000/assets?category_id=" + props.id, options)
+		fetch(
+			import.meta.env.VITE_SERVER_URL + "/assets?category_id=" + props.id,
+			options
+		)
 			.then(res => res.json())
 			.then((data: { assets: { rows: SnipeitAsset[] } }) => {
 				assets.value = data.assets.rows;
@@ -44,13 +47,13 @@ watch(
 <template>
 	<div class="grid h-min w-full grid-cols-2 gap-2 p-2 md:p-4 lg:grid-cols-6">
 		<BaseCard
-			theme="default"
 			v-for="asset in assets"
 			:key="asset.id"
 			:id="asset.id"
 			:name="asset.name"
 			:image="asset.image"
 			:status="asset.status_label.name"
+			:statusId="asset.status_label.name.id"
 		></BaseCard>
 	</div>
 </template>
