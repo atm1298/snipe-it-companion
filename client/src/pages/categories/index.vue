@@ -13,7 +13,7 @@ const options = {
 
 const categories = ref();
 const subcategories = ref();
-fetch("http://localhost:3000/categories", options)
+fetch(import.meta.env.VITE_SERVER_URL + "/categories", options)
 	.then(res => res.json())
 	.then(data => (categories.value = data.categories.rows))
 	.then(() => {
@@ -45,7 +45,6 @@ fetch("http://localhost:3000/categories", options)
 
 <template>
 	<div class="mb-2 grid h-min w-full grid-cols-1 gap-4 p-2 md:p-4">
-		<!-- <BaseBreadcrumbs /> -->
 		<template v-if="!subcategories">
 			<CategoryListItem
 				v-for="category in categories"

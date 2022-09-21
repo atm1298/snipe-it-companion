@@ -10,7 +10,7 @@ const attributes = computed(() =>
 		.map(reservation => [
 			{
 				key: reservation.id + "A",
-				dot: "orange",
+				bar: "orange",
 				dates: reservation.dateStart,
 				popover: {
 					label: "Abholung von " + reservation.asset.name,
@@ -19,7 +19,7 @@ const attributes = computed(() =>
 			},
 			{
 				key: reservation.id + "R",
-				dot: "purple",
+				bar: "purple",
 				dates: reservation.dateEnd,
 				popover: {
 					label: "Rückgabe von " + reservation.asset.name,
@@ -32,14 +32,14 @@ const attributes = computed(() =>
 </script>
 
 <template>
-	<div class="border-b p-2 md:rounded-2xl md:border md:border-gray-200 md:p-4">
-		<h1>Kalenderübersicht</h1>
+	<div class="">
+		<h1 class="mb-4">Termine</h1>
 		<v-calendar
 			:from-date="new Date()"
 			:attributes="attributes"
-			is-expanded
 			trim-weeks
-			class="rounded-2xl border border-white"
+			is-expanded
+			class="rounded-xl border border-white"
 		/>
 	</div>
 </template>
