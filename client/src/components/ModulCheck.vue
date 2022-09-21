@@ -5,7 +5,7 @@ import { ref } from "vue";
 import type { SnipeitAsset } from "@/api/snipeit";
 
 import BaseButton from "./BaseButton.vue";
-import BaseCard from "./BaseCard.vue";
+import BaseCardCheckout from "./BaseCardCheckout.vue";
 
 interface Props {
 	id: number;
@@ -22,7 +22,7 @@ const options = {
 };
 
 const assets = ref<SnipeitAsset[]>();
-fetch("http://localhost:3000/assets?category_id=" + props.id, options)
+fetch(import.meta.env.VITE_SERVER_URL + "/assets?category_id=" + props.id, options)
 	.then(res => res.json())
 	.then((data: { assets: { rows: SnipeitAsset[] } }) => {
 		assets.value = data.assets.rows;
@@ -48,7 +48,7 @@ fetch("http://localhost:3000/assets?category_id=" + props.id, options)
 			<div
 				class="m-3 mt-0 flex min-h-[calc(100%-3.5rem)] items-center opacity-0 transition-all ease-out hs-modal-open:mt-7 hs-modal-open:opacity-100 hs-modal-open:duration-500 sm:mx-auto sm:w-full sm:max-w-lg"
 			>
-				<div class="flex w-full flex-col rounded-xl border bg-white shadow-sm">
+				<div class="flex w-full flex-col rounded-md border bg-white shadow-sm">
 					<div class="flex items-center justify-between border-b py-3 px-4">
 						<h3 class="font-bold text-gray-800">Material hinzufügen</h3>
 						<button
@@ -61,15 +61,14 @@ fetch("http://localhost:3000/assets?category_id=" + props.id, options)
 						</button>
 					</div>
 					<div class="overflow-y-auto p-4">
-						<BaseCard
-							theme="checkout"
+						<BaseCardCheckout
 							v-for="asset in assets"
 							:key="asset.id"
 							:id="asset.id"
 							:name="asset.name"
 							:image="asset.image"
 							:status="asset.status_label.name"
-						></BaseCard>
+						></BaseCardCheckout>
 					</div>
 					<div
 						class="flex flex-col items-center justify-end gap-2 border-t py-3 px-4"
@@ -81,7 +80,7 @@ fetch("http://localhost:3000/assets?category_id=" + props.id, options)
 							>Weitere Materialien suchen</BaseButton
 						>
 						<a
-							class="inline-flex items-center justify-center gap-2 rounded-xl bg-gray-600 px-4 py-2 text-center text-sm font-semibold text-white hover:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-gray-200"
+							class="inline-flex items-center justify-center gap-2 rounded-md bg-gray-600 px-4 py-2 text-center text-sm font-semibold text-white hover:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-gray-200"
 							href="/"
 						>
 							Materialsuche abschließen

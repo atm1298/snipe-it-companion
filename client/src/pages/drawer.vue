@@ -26,7 +26,7 @@
 	<!-- Sidebar -->
 	<div
 		id="docs-sidebar"
-		class="hs-sidebar scrollbar-y dark:scrollbar-y fixed inset-y-0 left-0 z-[60] hidden w-64 -translate-x-full transform overflow-y-auto border-r border-gray-200 bg-white pt-7 pb-10 transition-all duration-300 hs-sidebar-open:translate-x-0 dark:border-gray-700 dark:bg-gray-800 lg:right-auto lg:bottom-0 lg:block lg:translate-x-0"
+		class="hs-sidebar scrollbar-y dark:scrollbar-y fixed inset-y-0 left-0 z-[60] hidden w-64 -translate-x-full transform overflow-y-auto border-r border-gray-300 bg-white pt-7 pb-10 transition-all duration-300 hs-sidebar-open:translate-x-0 dark:border-gray-700 dark:bg-gray-800 lg:right-auto lg:bottom-0 lg:block lg:translate-x-0"
 	>
 		<div class="px-6">
 			<a

@@ -21,7 +21,7 @@ import BaseButton from "./BaseButton.vue";
 			<div
 				class="m-3 mt-0 flex min-h-[calc(100%-3.5rem)] items-center opacity-0 transition-all ease-out hs-modal-open:mt-7 hs-modal-open:opacity-100 hs-modal-open:duration-500 sm:mx-auto sm:w-full sm:max-w-lg"
 			>
-				<div class="flex flex-col rounded-xl border bg-white shadow-sm">
+				<div class="flex flex-col rounded-md border bg-white shadow-sm">
 					<div class="flex items-center justify-between border-b py-3 px-4">
 						<h3 class="font-bold text-gray-800">Reservierung abschließen</h3>
 						<button
@@ -48,7 +48,7 @@ import BaseButton from "./BaseButton.vue";
 							>Zurück</BaseButton
 						>
 						<a
-							class="inline-flex items-center justify-center gap-2 rounded-xl bg-gray-600 px-4 py-2 text-center text-sm font-semibold text-white hover:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-gray-200"
+							class="inline-flex items-center justify-center gap-2 rounded-md bg-gray-600 px-4 py-2 text-center text-sm font-semibold text-white hover:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-gray-200"
 							href="/"
 						>
 							Fertig

@@ -3,7 +3,6 @@ import { XIcon } from "@heroicons/vue/outline";
 
 import { useDateStore } from "@/stores/date";
 
-import BaseBreadcrumbs from "../components/BaseBreadcrumbs.vue";
 import BaseButton from "../components/BaseButton.vue";
 import BaseDateTimePicker from "../components/BaseDateTimePicker.vue";
 import ButtonInfo from "../components/ButtonInfo.vue";
@@ -28,8 +27,6 @@ const dateStore = useDateStore();
 </script>
 
 <template>
-	<BaseBreadcrumbs />
-
 	<h1>Titel</h1>
 	<p>Seriennumer: 465123</p>
 	<p class="mb-4">
@@ -76,13 +73,13 @@ const dateStore = useDateStore();
 			<h3 class="font-bold text-gray-800">Zeitraum</h3>
 			<button
 				type="button"
-				class="hs-dropdown-toggle inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-xl text-sm text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white"
+				class="hs-dropdown-toggle inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-md text-sm text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white"
 				data-hs-offcanvas="#hs-offcanvas-bottom"
 			>
 				<XIcon class="h-4 w-4" />
 			</button>
 		</div>
-		<div class="p-4">
+		<div class="">
 			<BaseDateTimePicker></BaseDateTimePicker>
 			<BaseButton
 				theme="primary"
