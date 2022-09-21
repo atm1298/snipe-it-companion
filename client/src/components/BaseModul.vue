@@ -11,7 +11,6 @@ import { ref } from "vue";
 import type { SnipeitAsset } from "@/api/snipeit";
 
 import BaseButton from "./BaseButton.vue";
-import BaseCard from "./BaseCard.vue";
 
 interface Props {
 	asset: SnipeitAsset;
@@ -57,7 +56,7 @@ function openModal() {
 						leave-to="opacity-0 scale-95"
 					>
 						<DialogPanel
-							class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+							class="w-full max-w-md transform overflow-hidden rounded-xl bg-white p-6 text-left align-middle shadow-xl transition-all"
 						>
 							<DialogTitle
 								as="h3"
@@ -67,14 +66,13 @@ function openModal() {
 							</DialogTitle>
 
 							<div class="mt-2">
-								<BaseCard
-									theme="checkout"
+								<BaseCardCheckout
 									:key="asset.id"
 									:id="asset.id"
 									:name="asset.name"
 									:image="asset.image"
 									:status="asset.status_label.name"
-								></BaseCard>
+								></BaseCardCheckout>
 							</div>
 
 							<div class="mt-4 flex justify-center gap-4">
