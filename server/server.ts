@@ -80,6 +80,7 @@ server.get('/reservation', async (req, res) => {
 	const reservations = await prisma.reservation.findMany({
 		where: {
 			userId: req.query.userId ? Number(req.query.userId) : undefined,
+			assetId: req.query.assetId ? Number(req.query.assetId) : undefined,
 		},
 	});
 	const reservationsWithAssets = await Promise.all(
@@ -153,8 +154,40 @@ server.post('/reservation/return', async (req, res) => {
 	console.log(asset);
 });
 
+server.delete('/reservation/delete', async (req, res) => {
+	const { reservationId } = req.body;
+	const reservation = await prisma.reservation.delete({
+		where: {
+			id: reservationId,
+		},
+	});
+});
+
+server.patch('/reservation/patch', async (req, res) => {
+	const { reservationId, dateStart, dateEnd } = req.body;
+	const reservation = await prisma.reservation.update({
+		where: {
+			id: reservationId,
+		},
+		data: {
+			dateStart,
+			dateEnd,
+		},
+	});
+});
+
+server.post('/reservation/id', async (req, res) => {
+	const { reservationId } = req.body;
+	const reservation = await prisma.reservation.update({
+		where: {
+			id: reservationId,
+			dateEnd: Date,
+		},
+	});
+});
+
 // Run the server!
-server.listen({ port: 3000 }, function (err, address) {
+server.listen({ port: 3000, host: '0.0.0.0' }, function (err, address) {
 	if (err) {
 		server.log.error(err);
 		process.exit(1);

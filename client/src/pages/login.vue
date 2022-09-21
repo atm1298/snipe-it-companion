@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import BaseButton from "../components/BaseButton.vue";
+import BaseCheckbox from "../components/BaseCheckbox.vue";
 </script>
 
 <template>
-	<div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+	<div class="flex min-h-full w-full items-center justify-center p-2">
 		<div class="w-full max-w-md space-y-8">
 			<div>
 				<img
@@ -11,7 +12,7 @@ import BaseButton from "../components/BaseButton.vue";
 					src="../components/icons/logo_uni_siegel.png"
 					alt="Workflow"
 				/>
-				<h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+				<h2 class="mt-6 text-center text-3xl font-semibold text-gray-900">
 					Anmeldung
 				</h2>
 			</div>
@@ -44,18 +45,16 @@ import BaseButton from "../components/BaseButton.vue";
 
 				<div class="flex items-center justify-between">
 					<div class="flex items-center">
-						<input
-							id="remember-me"
-							name="remember-me"
-							type="checkbox"
-							class="h-4 w-4 rounded border-gray-300 text-gray-600 focus:ring-gray-500"
-						/>
-						<label for="remember-me" class="ml-2 block text-sm text-gray-900">
+						<BaseCheckbox></BaseCheckbox>
+						<label
+							for="remember-me"
+							class="ml-2 block text-base text-gray-900"
+						>
 							Angemeldet bleiben
 						</label>
 					</div>
 
-					<div class="text-sm">
+					<div class="text-base">
 						<a href="#" class="font-medium text-gray-600 hover:text-gray-500">
 							Passwort vergessen?
 						</a>
@@ -63,7 +62,11 @@ import BaseButton from "../components/BaseButton.vue";
 				</div>
 
 				<div class="flex justify-center">
-					<BaseButton theme="primary">Mit IDM Account einloggen</BaseButton>
+					<RouterLink to="/"
+						><BaseButton theme="primary" class="w-full"
+							>Mit IDM Account einloggen</BaseButton
+						>
+					</RouterLink>
 				</div>
 			</form>
 		</div>
