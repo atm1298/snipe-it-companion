@@ -5,7 +5,6 @@ import { useRoute } from "vue-router";
 import type { SnipeitAsset } from "../../api/snipeit";
 import BaseButton from "../../components/BaseButton.vue";
 import BaseCard from "../../components/BaseCard.vue";
-import BaseFilter from "../../components/BaseFilter.vue";
 
 // ALLE ASSETS TEST HEHE
 const options = {
@@ -17,7 +16,7 @@ const options = {
 const route = useRoute();
 const searchParams = new URLSearchParams(route.query as any);
 const assets = ref<SnipeitAsset[]>();
-fetch("http://localhost:3000/assets?" + searchParams, options)
+fetch(import.meta.env.VITE_SERVER_URL + "/assets?" + searchParams, options)
 	.then(res => res.json())
 	.then(
 		(data: { assets: { rows: SnipeitAsset[] } }) =>
@@ -27,12 +26,9 @@ fetch("http://localhost:3000/assets?" + searchParams, options)
 </script>
 
 <template>
-	<div v-if="assets" class="h-full p-2">
-		<!-- <BaseBreadcrumbs /> -->
-		<BaseFilter class=""></BaseFilter>
+	<div v-if="assets" class="p-2">
 		<div v-if="assets.length > 0" class="grid grid-cols-2 gap-4 md:p-4">
 			<BaseCard
-				theme="default"
 				v-for="asset in assets"
 				:key="asset.id"
 				:id="asset.id"
@@ -41,8 +37,10 @@ fetch("http://localhost:3000/assets?" + searchParams, options)
 				:status="asset.status_label.name"
 			></BaseCard>
 		</div>
-		<div v-else class="grid h-full grid-cols-1 place-items-center">
-			<h1 class="mb-2">Keine Ergebnisse gefunden :(</h1>
+		<div v-else class="flex h-full w-full flex-col items-center gap-4">
+			<h1 class="flex items-stretch p-3 text-center">
+				Es wurden leider keine Ergebnisse gefunden :(
+			</h1>
 			<RouterLink to="/categories"
 				><BaseButton theme="primary">Alle Kategorien anzeigen</BaseButton>
 			</RouterLink>
