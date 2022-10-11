@@ -1,8 +1,6 @@
 <script setup lang="ts">
 interface Props {
 	name: string;
-	dataHsTab: data-hs-tab;
-	ariaControls: aria-controls;
 }
 const props = defineProps<Props>();
 </script>

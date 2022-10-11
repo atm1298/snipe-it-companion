@@ -172,7 +172,7 @@ function editReservation(id: number) {
 				role="tabpanel"
 				aria-labelledby="bar-with-underline-item-3"
 			>
-				<p class=":text-gray-400 mb-3">
+				<p class="mb-3 text-gray-400">
 					Hier werden vergangene Reservierungen angezeigt.
 				</p>
 				<AssetStatus
