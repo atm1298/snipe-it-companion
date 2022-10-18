@@ -2,7 +2,7 @@
 import { XIcon } from "@heroicons/vue/outline";
 import { ref } from "vue";
 
-import type { SnipeitAsset } from "@/api/snipeit";
+import { fetchAssetById } from "@/api/snipeit";
 import { useDateStore } from "@/stores/date";
 
 import BaseButton from "../../../components/BaseButton.vue";
@@ -17,7 +17,6 @@ interface Props {
 }
 
 const props = defineProps<Props>();
-const details = ref<{ title: string; description: string }[]>([]);
 const infos = [
 	{
 		name: "Jan-Henrik Schröder",
@@ -26,28 +25,9 @@ const infos = [
 	},
 ];
 
-// ALLE ASSETS TEST HEHE
-const options = {
-	headers: {
-		Accept: "application/json",
-		"Content-Type": "application/json",
-	},
-};
-
-const asset = ref<SnipeitAsset>();
-fetch(import.meta.env.VITE_SERVER_URL + "/assets/" + props.id, options)
-	.then(res => res.json())
-	.then((data: { asset: SnipeitAsset }) => {
-		asset.value = data.asset;
-		details.value = Object.entries(data.asset.custom_fields)
-			.map(array => ({
-				title: array[0],
-				description: array[1].value,
-			}))
-			.filter(detail => detail.description.length !== 0);
-	})
-
-	.then(() => console.log(asset.value));
+const data = await fetchAssetById(props.id);
+const asset = data.asset;
+const details = data.details;
 
 const isDetailsOpen = ref(false);
 

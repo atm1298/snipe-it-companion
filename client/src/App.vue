@@ -9,7 +9,9 @@ import Navbar from "./components/Navbar.vue";
 		<Navbar></Navbar>
 
 		<main class="mx-auto flex w-full">
-			<RouterView />
+			<Suspense>
+				<RouterView />
+			</Suspense>
 		</main>
 	</div>
 </template>
