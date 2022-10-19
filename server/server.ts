@@ -133,7 +133,12 @@ server.post<{ Body: { reservationId: number } }>(
 		)
 			.then((response) => response.json())
 			.catch((err) => console.error(err));
+
 		console.log(asset);
+
+		return {
+			reservation,
+		};
 	}
 );
 
