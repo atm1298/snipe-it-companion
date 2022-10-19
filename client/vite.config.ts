@@ -11,6 +11,9 @@ export default defineConfig({
 			"@": fileURLToPath(new URL("./src", import.meta.url)),
 		},
 	},
+	build: {
+		assetsDir: "stuff",
+	},
 	server: {
 		cors: true,
 		host: "localhost",
