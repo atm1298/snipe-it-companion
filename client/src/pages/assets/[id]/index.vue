@@ -50,7 +50,7 @@ const dateStore = useDateStore();
 					<h1 class="mb-2 md:text-4xl">{{ asset.name }}</h1>
 					<p>{{ asset.serial }}</p>
 					<p>{{ asset.status_label.name }}</p>
-					<p class="mb-2">Abholort: {{ asset.location.name }}</p>
+					<p class="mb-2">Abholort: {{ asset.location?.name }}</p>
 					<div class="pb-20 md:pb-2">
 						<template v-if="details.length !== 0">
 							<DetailsList
