@@ -38,8 +38,12 @@ export const useDateStore = defineStore({
 	},
 	persist: {
 		afterRestore: ctx => {
-			ctx.store.$state.start = new Date(ctx.store.$state.start);
-			ctx.store.$state.end = new Date(ctx.store.$state.end);
+			ctx.store.$state.start = ctx.store.$state.start
+				? new Date(ctx.store.$state.start)
+				: null;
+			ctx.store.$state.end = ctx.store.$state.end
+				? new Date(ctx.store.$state.end)
+				: null;
 		},
 	},
 });

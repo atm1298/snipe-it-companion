@@ -15,7 +15,13 @@ fetch(import.meta.env.VITE_SERVER_URL + "/reservation?userId=1", options)
 	.then(res => res.json())
 	.then(data => {
 		console.log(data);
-		reservations.value = data;
+		reservations.value = data.map(reservation => ({
+			...reservation,
+			asset: {
+				...reservation.asset,
+				name: reservation.asset.name.split(/&[gl]t;/g)[0],
+			},
+		}));
 	});
 
 const upcomingReservations = computed(

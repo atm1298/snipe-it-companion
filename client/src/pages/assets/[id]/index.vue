@@ -99,24 +99,30 @@ const dateStore = useDateStore();
 					<span>Verfügbarkeit einsehen</span>
 				</BaseButton>
 				<div v-else class="flex items-center justify-between gap-4 md:hidden">
-					<div class="flex flex-col">
-						<p>{{ asset.status_label.name }}</p>
-						<button
-							type="button"
-							class="hs-dropdown-toggle flex w-full items-center justify-between gap-2 rounded-md border border-transparent bg-gray-100 py-3 px-4 transition-all hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-1 md:hidden"
-							data-hs-offcanvas="#hs-datepicker-asset"
-						>
-							<span>Zeitraum</span>
-							<span class="text-orange-700">
-								{{ dateStore.formattedStartSmall }} -
-								{{ dateStore.formattedEndSmall }}</span
+					<div class="flex w-full flex-col">
+						<div class="flex w-full items-center justify-between">
+							<div class="flex flex-col">
+								<p class="pl-2">{{ asset.status_label.name }}</p>
+								<button
+									type="button"
+									class="hs-dropdown-toggle flex w-full items-center justify-between gap-1 rounded-md border border-transparent py-1 px-2 transition-all focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-1 md:hidden"
+									data-hs-offcanvas="#hs-datepicker-asset"
+								>
+									<span class="text-orange-700">{{
+										dateStore.formattedStartSmall
+									}}</span>
+									-
+									<span class="text-orange-700">{{
+										dateStore.formattedEndSmall
+									}}</span>
+								</button>
+							</div>
+							<RouterLink :to="`/assets/${id}/checkout`"
+								><BaseButton theme="primary">
+									Reservieren
+								</BaseButton></RouterLink
 							>
-						</button>
-						<RouterLink :to="`/assets/${id}/checkout`"
-							><BaseButton theme="primary">
-								Reservieren
-							</BaseButton></RouterLink
-						>
+						</div>
 					</div>
 				</div>
 			</div>

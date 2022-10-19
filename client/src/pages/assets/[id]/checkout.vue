@@ -36,6 +36,7 @@ fetch(import.meta.env.VITE_SERVER_URL + "/assets/" + props.id, options)
 	.then(res => res.json())
 	.then((data: { asset: SnipeitAsset }) => {
 		asset.value = data.asset;
+		asset.value.name = asset.value.name.split(/&[gl]t;/g)[0];
 	})
 
 	.then(() => console.log(asset.value));

@@ -22,7 +22,10 @@ const assets = ref<SnipeitAsset[]>();
 fetch(import.meta.env.VITE_SERVER_URL + "/assets?category_id=" + props.id, options)
 	.then(res => res.json())
 	.then((data: { assets: { rows: SnipeitAsset[] } }) => {
-		assets.value = data.assets.rows;
+		assets.value = data.assets.rows.map(row => ({
+			...row,
+			name: row.name.split(/&[gl]t;/g)[0],
+		}));
 	})
 
 	.then(() => console.log(assets.value));
@@ -36,7 +39,10 @@ watch(
 		)
 			.then(res => res.json())
 			.then((data: { assets: { rows: SnipeitAsset[] } }) => {
-				assets.value = data.assets.rows;
+				assets.value = data.assets.rows.map(row => ({
+					...row,
+					name: row.name.split(/&[gl]t;/g)[0],
+				}));
 			})
 
 			.then(() => console.log(assets.value));

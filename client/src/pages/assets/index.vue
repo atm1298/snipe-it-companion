@@ -20,7 +20,12 @@ fetch(import.meta.env.VITE_SERVER_URL + "/assets?" + searchParams, options)
 	.then(res => res.json())
 	.then(
 		(data: { assets: { rows: SnipeitAsset[] } }) =>
-			(assets.value = data.assets.rows.filter(row => row.status_label.id !== 9))
+			(assets.value = data.assets.rows
+				.filter(row => row.status_label.id !== 9)
+				.map(row => ({
+					...row,
+					name: row.name.split(/&[gl]t;/g)[0],
+				})))
 	)
 	.then(() => console.log(assets.value));
 </script>
