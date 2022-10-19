@@ -208,7 +208,7 @@ server.patch<{
 });
 
 // Run the server!
-server.listen({ port: 3000, host: '0.0.0.0' }, function (err, address) {
+server.listen({ port: 3333, host: '0.0.0.0' }, function (err, address) {
 	if (err) {
 		server.log.error(err);
 		process.exit(1);
