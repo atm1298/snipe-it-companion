@@ -58,6 +58,8 @@ function reserveAsset() {
 	})
 		.then(res => res.json())
 		.then(data => console.log(data))
+		.then(() => (dateStore.start = null))
+		.then(() => (dateStore.end = null))
 		.then(() => window.location.reload());
 }
 </script>
