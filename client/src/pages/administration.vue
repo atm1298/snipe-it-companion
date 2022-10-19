@@ -46,7 +46,8 @@ function updateReservation(type: string, id: number) {
 		}),
 	})
 		.then(res => res.json())
-		.then(data => console.log(data));
+		.then(data => console.log(data))
+		.then(() => window.location.reload());
 }
 </script>
 
