@@ -33,8 +33,8 @@ const upcomingReturns = computed(
 				!reservation.returned
 		) ?? []
 );
-function updateReservation(type: string, id: number) {
-	fetch(import.meta.env.VITE_SERVER_URL + "/reservation/" + type, {
+async function updateReservation(type: string, id: number) {
+	const res = await fetch(import.meta.env.VITE_SERVER_URL + "/reservation/" + type, {
 		headers: {
 			Accept: "application/json",
 			"Content-Type": "application/json",
@@ -43,10 +43,10 @@ function updateReservation(type: string, id: number) {
 		body: JSON.stringify({
 			reservationId: id,
 		}),
-	})
-		.then(res => res.json())
-		.then(data => console.log(data))
-		.then(() => window.location.reload());
+	});
+
+	console.log(await res.json());
+	window.location.reload();
 }
 </script>
 
