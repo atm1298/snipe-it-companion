@@ -147,7 +147,7 @@ function reserveAsset() {
 					<div class="grid grid-cols-3">
 						<p class="font-normal text-gray-500">Ort</p>
 						<p class="col-span-2 font-medium text-gray-900">
-							{{ asset.location.name }}
+							{{ asset.location?.name }}
 						</p>
 					</div>
 					<div class="grid grid-cols-3">
